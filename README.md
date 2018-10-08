@@ -1,7 +1,7 @@
 
 # **Xiaosheng's CMEE 2018-2019 Coursework Repository**
 
-![ice-bear](https://vignette.wikia.nocookie.net/webarebears/images/3/37/Ice_bear.png/revision/latest/scale-to-width-down/350?cb=20160619204008)
+![ice-bear](http://cdn2us.denofgeek.com/sites/denofgeekus/files/styles/article_width/public/2017/08/we-bare-bears-grizz-panda-ice-bear.png?itok=ZAm1gpyl)
 ## week1
 - introduction to Unix and Linux
 - Shell scripting
