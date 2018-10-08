@@ -1,20 +1,16 @@
 #1 Count how many lines are in each file
 wc -l ../Data/fasta/*.fasta
 
-awk
-cat
-wc -l `find "*.fasta"`
-grep
-
 #2 print everything starting from the second line for the E.coli genome
 tail -n +2 ../Data/fasta/E.coli.fasta
-sed -n '2,$p' ../Data/fasta/E.coli.fasta 
+sed -n '2,$p' ../Data/fasta/E.coli.fasta
+awk 'NR>1' ../Data/fasta/E.coli.fasta
 
 #3 Count the sequence length of this genome
-tail -n +2 ../Data/fasta/E.coli.fasta |wc -m
+awk 'NR>1' ../Data/fasta/E.coli.fasta |tr -d "\n" |wc -m
 
 #4 Count the matches of a particular sequence, "ATGC" in the genome of E. coli (hint: Start by removing the first line and removing newline characters)
-tail -n +2 ../Data/fasta/E.coli.fasta | grep -o "ATCG" |wc -l
+awk 'NR>1' ../Data/fasta/E.coli.fasta |tr -d "\n" |grep -o "ATCG" |wc -l
 
-#5 Compute the AT/GC ratio
-awk 'BEGIN{printf "%.6f\n", '`tail -n +2 ../Data/fasta/E.coli.fasta | grep -o "T\|A" |wc -l`' / '`tail -n +2 ../Data/fasta/E.coli.fasta | grep -o "C\|G" |wc -l`'}'
+#5 Compucdte the AT/GC ratio
+awk 'BEGIN{printf "%.6f\n", '`awk 'NR>1' ../Data/fasta/E.coli.fasta | grep -o "T\|A" |wc -l`' / '`awk 'NR>1' ../Data/fasta/E.coli.fasta | grep -o "C\|G" |wc -l`'}'
