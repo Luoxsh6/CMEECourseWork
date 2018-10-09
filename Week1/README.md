@@ -1,7 +1,7 @@
 # Week1
 
-> :clap: :clap: :clap: :clap: :clap: :clap: :clap:
 > Here is my first README.md, Hooray!!! 
+> :clap: :clap: :clap:
 
 This project is only used to please Samraat so that I can get good grades!  :relieved:  :relieved:
 
