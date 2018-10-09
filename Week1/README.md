@@ -1,9 +1,10 @@
 # Week1
 `Linux Shell Scrpting` `Git` `LaTeX`
-> Here is my first README.md, Hooray!!! 
-> :clap: :clap: :clap:
----
+
 This is a rookie's Linux computing project   :ghost:  :ghost:
+
+***
+
 ## Getting Started
 As you can see, it has three directory.
 - **Data** for the data used for the Code
@@ -15,9 +16,13 @@ As you can see, it has three directory.
 Some basic concepts about Linux shell scripting & LaTex
 
 ### Installation
-Ubuntu 16.04 
+Ubuntu 16.04  
 LaTeX
 ### Usage example
+- MyExampleScript.sh
+    ```Bash
+    #just to say hello!
+    ```
 - boilerplate.sh
 
     ```Bash
@@ -26,18 +31,42 @@ LaTeX
     ```
 
 - CompileLaTeX.sh
+    ```Bash
+    #using FirstExample.tex as input to compile with .bib and output a pdf
+    bash CompileLaTeX FirstExample.tex
+    ```
+
 - ConcatenateTwoFiles.sh
+    ```Bash
+    #merge two file
+    bash ConcatenateTwoFiles.sh [file1] [file2]
+    ```
 - CountLines.sh
+    ```Bash
+    #CountLines
+    bash CountLines.sh [file]
+    ```
+
 - csvtospace.sh
 - tabtocsv.sh
-- MyExampleScript.sh
+    ```Bash
+    #converts one file to another file
+    bash to.sh [file1] [file2]
+    ```
+
 - variables.sh
+    ```Bash
+    #using variables
+    ```
 - UnixPrac1.txt
+    ```Bash
+    #some command to operating the fasta file
+    ```
 
 ___
 ## Authors
 
-* **Xiaosheng Luo** - *MRes CMEE* - [xiaosheng.luo18@imperial.ac.uk](xiaosheng.luo18@imperial.ac.uk)
+**Xiaosheng Luo** - *MRes CMEE* - [xiaosheng.luo18@imperial.ac.uk](xiaosheng.luo18@imperial.ac.uk)
 
 ## License
 
