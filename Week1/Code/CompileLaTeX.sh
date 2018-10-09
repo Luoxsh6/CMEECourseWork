@@ -1,17 +1,16 @@
 #!/bin/bash
-pdflatex $1.tex
-pdflatex $1.tex
-bibtex $1
-pdflatex $1.tex
-pdflatex $1.tex
-evince $1.pdf &
+name=`basename $1 .tex`
+pdflatex $1
+pdflatex $1
+bibtex $name
+pdflatex $1
+pdflatex $1
+evince $name.pdf &
 
 ##Cleanup
-rm* ∼
-rm*.aux
-rm*.dvi
-rm*.log
-rm*.nav
-rm*.out
-rm*.snm
-rm*.toc
+
+rm *.aux
+rm *.bbl
+rm *.log
+rm *.blg
+
