@@ -4,6 +4,7 @@
 #stripped). Hence, you can access your docstrings at run time.
 __author__ = 'Xiaosheng Luo (xiaosheng.luo18@imperial.ac.uk)'
 __version__ = '0.0.1'
+
 import sys
 def even_or_odd(x=0): # if not specified, x should take value 0.
 	"""Find whether a number x is even or odd."""
@@ -46,9 +47,9 @@ def find_all_primes(x=22):
 
 def main(argv):
 # sys.exit("don't want to do this right now!")
-	print even_or_odd(22)
+	print even_or_odd(int(sys.argv[3]))
 	print even_or_odd(33)
-	print largest_divisor_five(120)
+	print largest_divisor_five(20)
 	print largest_divisor_five(121)
 	print is_prime(60)
 	print is_prime(59)
@@ -56,5 +57,6 @@ def main(argv):
 	return 0
 
 if (__name__ == "__main__"):
-	status = main(sys.argv)
+	print (sys.argv[3])
+	status = main(sys.argv[3])
 	sys.exit(status)
