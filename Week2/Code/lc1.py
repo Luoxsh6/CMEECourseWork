@@ -31,7 +31,7 @@ for bird in birds:
     latin_names.append(bird[0])
     common_names.append(bird[1])
     mean_body_masses.append(bird[2])    # using loops & index
-
+print (latin_names, '\n', common_names, '\n', mean_body_masses)
 
 
 

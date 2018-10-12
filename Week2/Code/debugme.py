@@ -1,6 +1,6 @@
 def createabug(x):
 	y = x**4
-	z = 0.
+	z = 1
 	y = y/z
 	return y
 

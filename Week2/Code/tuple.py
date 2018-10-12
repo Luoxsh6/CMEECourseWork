@@ -21,8 +21,7 @@ birds = ( ('Passerculus sandwichensis','Savannah sparrow',18.7),
 # SAYS WHAT THE SCRIPT DOES AND WHO THE AUTHOR IS
 
 
-latin_names = [bird[0] for bird in birds]
-common_names = [bird[1] for bird in birds]
-masses = [bird[2] for bird in birds]    # using list comprehensions & index
+for i in range(len(birds)):
+  print (birds[i])
 
-print (latin_names, '\n', common_names, '\n', masses)
+[print (birds[i]) for i in range(len(birds))]

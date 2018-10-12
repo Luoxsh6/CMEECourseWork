@@ -22,7 +22,7 @@ taxa_order = list(set([bird[1] for bird in taxa ]))  #create a list contain all 
 for order in taxa_order:     #iterate the order name
         for bird in taxa:     #iterate the taxa to put species into the corresponding order
                 if bird[1] == order:
-                        taxa_dic.setdefault(order,set([])).add(bird[0])     
+                        taxa_dic.setdefault(order,set()).add(bird[0])     
 
 print (taxa_dic)
 

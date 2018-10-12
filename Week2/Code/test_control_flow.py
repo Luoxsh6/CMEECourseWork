@@ -23,7 +23,7 @@ def even_or_odd(x=0):
     
     in case of negative numbers, the positive is taken:    
     >>> even_or_odd(-2)
-    '-2 is Even!'
+    '-2 is Even!'gitgit
     
     """
     #Define function to be tested
@@ -33,13 +33,13 @@ def even_or_odd(x=0):
 
 ####### I SUPPRESSED THIS BLOCK: WHY? #######
 
-def main(argv): 
-    print even_or_odd(22)
-    print even_or_odd(33)
-    return 0
+# def main(argv): 
+#     print even_or_odd(22)
+#     print even_or_odd(33)
+#     return 0
 
-if (__name__ == "__main__"):
-    status = main(sys.argv)
+# if (__name__ == "__main__"):
+#     status = main(sys.argv)
 #############################################
     
 doctest.testmod()   # To run with embedded tests

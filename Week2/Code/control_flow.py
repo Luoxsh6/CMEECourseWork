@@ -47,7 +47,7 @@ def find_all_primes(x=22):
 
 def main(argv):
 # sys.exit("don't want to do this right now!")
-	print even_or_odd(int(sys.argv[3]))
+	print even_or_odd(22)
 	print even_or_odd(33)
 	print largest_divisor_five(20)
 	print largest_divisor_five(121)
@@ -57,6 +57,6 @@ def main(argv):
 	return 0
 
 if (__name__ == "__main__"):
-	print (sys.argv[3])
-	status = main(sys.argv[3])
+	print "sys.argv"
+	status = main(sys.argv)
 	sys.exit(status)
