@@ -20,6 +20,7 @@ birds = (('Passerculus sandwichensis', 'Savannah sparrow', 18.7),
 # ALSO, PLEASE INCLUDE A DOCSTRING AT THE BEGINNING OF THIS FILE THAT
 # SAYS WHAT THE SCRIPT DOES AND WHO THE AUTHOR IS
 
+
 # use traditional loops
 for i in range(len(birds)):
     print(birds[i])

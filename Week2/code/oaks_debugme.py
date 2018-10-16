@@ -1,10 +1,16 @@
+#!/usr/bin/env python
+"""it is using for debugging practice"""
+
+__author__ = 'Xiaosheng Luo (xiaosheng.luo18@imperial.ac.uk)'
+__version__ = '2.0.0'
+
 import csv
 import sys
 import pdb
 import re
+
+
 # Define function
-
-
 def is_an_oak(name):
     """ Returns True if name is starts with 'quercus'
 
@@ -18,6 +24,7 @@ def is_an_oak(name):
     False
     """
 
+    # use Regular expression to match "quercus"
     if re.match('^quercus\s', name, flags=re.I) != None:
         return True
     else:
@@ -25,12 +32,12 @@ def is_an_oak(name):
 
 
 def main(argv):
-    f = open('../Data/TestOaksData.csv', 'r')
-    g = open('../Data/JustOaksData.csv', 'w')
+    f = open('../data/TestOaksData.csv', 'r')
+    g = open('../data/JustOaksData.csv', 'w')
     taxa = csv.reader(f)
-    header = next(taxa)
+    header = next(taxa)  # catch the header of the TestOaksData
     csvwrite = csv.writer(g)
-    csvwrite.writerow(header)
+    csvwrite.writerow(header)  # wirte the header to the JustOaksData
     oaks = set()
     for row in taxa:
         print(row)
