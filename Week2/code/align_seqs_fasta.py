@@ -14,8 +14,8 @@ if len(sys.argv) > 1:
 
     Input1 = sys.argv[1]
     Input2 = sys.argv[2]
-    File1_direction = r'/home/xiaosheng/CMEECourseWork/Week2/Data/' + Input1
-    File2_direction = r'/home/xiaosheng/CMEECourseWork/Week2/Data/' + Input2
+    File1_direction = r'/home/xiaosheng/CMEECourseWork/Week2/data/' + Input1
+    File2_direction = r'/home/xiaosheng/CMEECourseWork/Week2/data/' + Input2
 
     with open(File1_direction) as f1:
         next(f1)
@@ -93,7 +93,7 @@ f.close()
 
 f = open('pickle.txt', 'rb+')
 new_txt = open(
-    r'/home/xiaosheng/CMEECourseWork/Week2/Data/DNA Alignment Results.txt', 'w')
+    r'/home/xiaosheng/CMEECourseWork/Week2/data/DNA Alignment Results.txt', 'w')
 
 # print (my_best_align + '\n')
 # print (s1)
