@@ -14,28 +14,27 @@ lines2 = ""
 
 # find the inputfile name and read the sequences
 if len(sys.argv) > 1:
-
     File1_direction = r'../data/' + sys.argv[1]
     File2_direction = r'../data/' + sys.argv[2]
+else:  # using seq1.csv and seq2.csv as default input
+    File1_direction = r'../data/seq1.csv'
+    File2_direction = r'../data/seq2.csv'
 
-    with open(File1_direction) as f1:
-        next(f1)
-        for line in f1.readlines():
-            lines1 += line
-    f1.close()
+with open(File1_direction) as f1:
+    next(f1)  # Skip the first line
+    for line in f1.readlines():
+        lines1 += line
+f1.close()
 
-    with open(File2_direction) as f2:
-        next(f2)
-        for line in f2.readlines():
-            lines2 += line
-    f2.close()
+with open(File2_direction) as f2:
+    next(f2)
+    for line in f2.readlines():
+        lines2 += line
+f2.close()
 
-    seq1 = lines1.replace('\n', '')
-    seq2 = lines2.replace('\n', '')
+seq1 = lines1.replace('\n', '')
+seq2 = lines2.replace('\n', '')
 
-else:
-    seq2 = "ATCGCCGGATTACGGG"
-    seq1 = "CAATTCGGAT"
 
 # assign the longest sequence s1, and the shortest to s2
 # l1 is the length of the longest, l2 that of the shortest
