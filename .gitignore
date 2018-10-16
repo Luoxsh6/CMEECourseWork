@@ -1,5 +1,6 @@
 *~
 *.tmp
+.vscode
 
 # Python
 *.py[co]
