@@ -5,6 +5,8 @@ __author__ = 'Xiaosheng Luo (xiaosheng.luo18@imperial.ac.uk)'
 __version__ = '2.0.0'
 
 import sys
+import pickle
+import os
 
 lines1 = ""
 lines2 = ""
@@ -77,20 +79,32 @@ def calculate_score(s1, s2, l1, l2, startpoint):
 # now try to find the best match (highest score)
 my_best_align = None
 my_best_score = -1
-
+best_align_num = 0
+f = open('pickle.txt', 'wb+')
 for i in range(l1):
     z = calculate_score(s1, s2, l1, l2, i)
-    if z > my_best_score:
+    if z >= my_best_score:
+        best_align_num += 1
         my_best_align = "." * i + s2
         my_best_score = z
+        pickle.dump(my_best_align, f, 0)
+f.close()
+
+
+f = open('pickle.txt', 'rb+')
+new_txt = open(
+    r'/home/xiaosheng/CMEECourseWork/Week2/Data/DNA Alignment Results.txt', 'w')
 
 # print (my_best_align + '\n')
 # print (s1)
 # print ("Best score:", my_best_score)
 
-new_txt = open(
-    r'/home/xiaosheng/CMEECourseWork/Week2/Data/DNA Alignment Results.txt', 'w')
-new_txt.write(str(my_best_align) + '\n' + s1 + '\n' +
-              "Best score:" + str(my_best_score))
+for i in range(best_align_num):
+    new_txt.write(pickle.load(f) + '\n' + s1 + '\n' +
+                  "Best score:" + str(my_best_score) + '\n' + '\n')
 
+
+f.close()
 new_txt.close()
+
+os.remove('pickle.txt')
