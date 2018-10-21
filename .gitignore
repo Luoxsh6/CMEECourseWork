@@ -1,7 +1,6 @@
 *~
 *.tmp
-results/*
-[Ss]andbox/
+.vscode
 
 # Python
 *.py[co]
