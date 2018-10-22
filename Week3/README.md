@@ -50,7 +50,7 @@ Rstudio R 3.4.4
 
 - TreeHeight.R
     ```R
-    ##Modify the script TreeHeight.R, Loads trees.csv and ouput file called TreeHts.csv in results that contains the calculated tree heights
+    ##Modify the script TreeHeight.R, Loads trees.csv and ouput file called ##TreeHts.csv in results that contains the calculated tree heights
     ```
 
 - get_TreeHeight.R
@@ -79,19 +79,25 @@ Rstudio R 3.4.4
     ##The *apply family of functions
     ```
 
-- align_seqs_fasta.py
-    ```bash
-    ##run by using explicit inputs, for example, when ##called with something like:
-    python align_seqs_fasta.py seq1.csv seq2.csv
-    ##default input seq1.csv seq2.csv
+- Vectorize2.R
+    ```R
+    ##come up with a better solution to Ricker using vectorization 
     ```
 
-- align_seqs_better.py
-    ```python
-    ##save all the best results in DNA_Alignment_Results.txt
+- browse.R
+    ```R
+    ##debugging 
     ```
 
+- TAutoCorr.R
+    ```R
+    ##Autocorrelation in weather
+    ```
 
+- Mapping.R
+    ```R
+    ##map the Global Population Dynamics Database
+    ```
 ___
 ## Authors
 

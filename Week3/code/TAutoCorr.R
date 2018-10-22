@@ -17,4 +17,16 @@ for (i in 1:10000){
 }
 
 p_value = length(result[result>tempCor]) / length(result)
+print(p_value)
 
+plot.new()
+pdf("../results/TAutoCorr.pdf", 11.7, 8.3) # Open blank pdf page using a relative path
+hist(result, xlab = "correlation coefficient values", 
+     ylab = "Frequency", col = rgb(0, 0, 1, 0.5), 
+     main = "Temperature Coefficients", breaks = 27) 
+
+legend('topleft', c("1000 random correlation coefficients", "successive year correlation"),
+       fill=c(rgb(0, 0, 1, 0.5), rgb(1, 0, 0, 0.5)), cex = 0.8)
+
+abline(v = tempCor, col = rgb(1, 0, 0, 0.5), lwd = 4) # successive year corr
+dev.off()
