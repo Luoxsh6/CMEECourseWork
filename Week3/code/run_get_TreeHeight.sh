@@ -9,7 +9,7 @@
 
 P1=$1  
   
-DEFAULT_P1="trees.csv"  
+DEFAULT_P1="../data/trees.csv"  
 
     
 if [ "$P1" == "" ]; then  

@@ -19,19 +19,21 @@ TreeHeight <- function(degrees, distance){
 
 
 args <- commandArgs(T)
-basename <- basename(args)
-file_dir <- paste("../data/", basename, sep="")
-filename <- unlist(strsplit(x=basename, split="\\."))[1]
+# basename <- basename(args)
+# file_dir <- paste("../data/", basename, sep="")
+# filename <- unlist(strsplit(x=basename, split="\\."))[1]
 
-trees <- read.csv(file_dir)
+trees <- read.csv(args[1], sep=",")
+
 degrees <- trees[,3]
 distance <- trees[,2]
-height <- TreeHeight(degrees,distance)
-new_data <- data.frame(trees,Tree.Height.m=height)
+Tree.Height.m <- TreeHeight(degrees,distance)
+trees$Tree.Height.m <- Tree.Height.m    #create a new column 
 
-newfilename_dir <- paste("../data/", filename, "_treeheights.csv", sep="")
+filename= tools::file_path_sans_ext(basename(args[1])) # getting the filename
+newfilename_dir <- paste("../results/", filename, "_treeheights.csv", sep="")
 
-write.csv(new_data, file=newfilename_dir, row.names=FALSE)
+write.csv(trees, file=newfilename_dir, row.names=FALSE)
 
 
 

@@ -21,7 +21,7 @@ TreeHeight <- function(degrees, distance){
 trees <- read.csv(file = "../data/trees.csv")
 degrees <- trees[,3]
 distance <- trees[,2]
-height <- TreeHeight(degrees,distance)
-new_data <- data.frame(trees,Tree.Height.m=height)
-write.csv(new_data, file="../data/TreeHts.csv", row.names=FALSE)
+Tree.Height.m <- TreeHeight(degrees,distance)
+trees$Tree.Height.m <- Tree.Height.m    #create a new column 
+write.csv(trees, file="../results/TreeHts.csv", row.names=FALSE)
 
