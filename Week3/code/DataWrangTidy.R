@@ -31,19 +31,22 @@ TempData <- as.data.frame(MyData[-1,],stringsAsFactors = F) #stringsAsFactors = 
 colnames(TempData) <- MyData[1,] # assign column names from original data
 
 ############# Convert from wide to long format  ###############
-require(reshape2) # load the reshape2 package
+require(dplyr)
+require(tidyr)
 
-
-MyWrangledData <- melt(TempData, id=c("Cultivation", "Block", "Plot", "Quadrat"), variable.name = "Species", value.name = "Count")
-
-MyWrangledData[, "Cultivation"] <- as.factor(MyWrangledData[, "Cultivation"])
-MyWrangledData[, "Block"] <- as.factor(MyWrangledData[, "Block"])
-MyWrangledData[, "Plot"] <- as.factor(MyWrangledData[, "Plot"])
-MyWrangledData[, "Quadrat"] <- as.factor(MyWrangledData[, "Quadrat"])
-MyWrangledData[, "Count"] <- as.integer(MyWrangledData[, "Count"])
-
+MyWrangledData <- TempData %>% gather(., Species, Count, -Cultivation, -Block, -Plot, -Quadrat) %>% 
+    mutate( Cultivation = as.factor(Cultivation),
+            Block = as.factor(Block),
+            Plot = as.factor(Plot),
+            Quadrat = as.factor(Quadrat),
+            Species = as.factor(Species),
+            Count = as.numeric(Count))                                                                                                                                                                                                                                                                                                                                                                                                         
 str(MyWrangledData)
 head(MyWrangledData)
 dim(MyWrangledData)
 
 ############# Exploring the data (extend the script below)  ###############
+hist(MyWrangledData$Count)
+hist(log(MyWrangledData$Count))
+boxplot(MyWrangledData$Count ~ MyWrangledData$Cultivation)
+plot(MyWrangledData$Count ~ MyWrangledData$Cultivation)

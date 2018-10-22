@@ -27,6 +27,7 @@ f <-data.frame(feeding.type=d, log.Predator.mass=a,log.Prey.mass=b,ratio=c)
 log.Predator.mass <- ddply(f, .(feeding.type), summarize, log.Predator.mass.mean = round(mean(log.Predator.mass), 2), log.Predator.mass.median = round(median(log.Predator.mass), 2))
 log.Prey.mass <- ddply(f, .(feeding.type), summarize, log.Prey.mass.mean = round(mean(log.Prey.mass), 2), log.Prey.mass.median = round(median(log.Prey.mass), 2))
 ratio <- ddply(f, .(feeding.type), summarize, ratio.mean = round(mean(ratio), 2), ratio.median = round(median(ratio), 2))
-
 mix <- merge(log.Predator.mass, log.Prey.mass)
 result <- merge(mix, ratio)
+
+write.csv(result,"../results/PP_Results.csv")
