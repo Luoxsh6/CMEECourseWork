@@ -98,6 +98,21 @@ Rstudio R 3.4.4
     ```R
     ##map the Global Population Dynamics Database
     ```
+
+- DataWrangTidy.R
+    ```R
+    ##Convert from wide to long format
+    ```
+
+- DataWrangTidy.R
+    ```R
+    ##Convert from wide to long format
+    ```
+
+- PP_Lattice.R
+    ```R
+    ##result in three files called Pred_Lattice.pdf, Prey_Lattice.pdf, and SizeRatio_Lattice.pdf
+    ```
 ___
 ## Authors
 
