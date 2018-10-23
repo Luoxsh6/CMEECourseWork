@@ -1,4 +1,4 @@
-# Week2
+# Week3
 `R`
 
 This is a rookie's R computing project   :ghost:  :ghost:
@@ -97,11 +97,6 @@ Rstudio R 3.4.4
 - Mapping.R
     ```R
     ##map the Global Population Dynamics Database
-    ```
-
-- DataWrangTidy.R
-    ```R
-    ##Convert from wide to long format
     ```
 
 - DataWrangTidy.R
