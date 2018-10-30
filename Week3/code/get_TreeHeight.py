@@ -17,7 +17,7 @@ def TreeHeight(degrees=27, distance=27):
 
 
 def SaveNewfile(path='../data/trees.csv'):
-    """This function strip the input path and save a filename__treeheights.csv in results"""
+    """This function strip the input path and save the data into a filename__treeheights.csv in results"""
 
 
 TreeHeight()
