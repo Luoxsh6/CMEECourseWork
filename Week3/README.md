@@ -108,6 +108,13 @@ Rstudio R 3.4.4
     ```R
     ##result in three files called Pred_Lattice.pdf, Prey_Lattice.pdf, and SizeRatio_Lattice.pdf
     ```
+
+- PP_Regress.R
+- PP_Regress_loc.R
+    ```R
+    ##using dplyr to group_by lm 
+    ```
+
 ___
 ## Authors
 
