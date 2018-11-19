@@ -18,3 +18,4 @@ fi
 
 
 Rscript get_TreeHeight.R $P1 
+python3 get_TreeHeight.py $P1

@@ -31,6 +31,7 @@ Sizs
 
 p.hist(Sizs) #log10 scale
 p.close('all')
+
 pos = nx.circular_layout(Sps)
 G = nx.Graph()
 

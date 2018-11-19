@@ -64,3 +64,30 @@ f = open('../data/TestOaksData.csv', 'r')
 re.search(r'^((19[0-9]+)|([2-9]+)){4}\d{1,2}\d{1,2}$', '20181113').group()
 
 re.search(r'^((19[0-9]{2})|([2-9]\d{3}))[01]\d{1}[0123]\d{1}$','20180133').group()
+
+
+MyStr = "Samraat Pawar, s.pawar@imperial.ac.uk, Systems biology and ecological theory; Another academic, a.academic@imperial.ac.uk, Some other stuff thats equally boring; Yet another academic, y.a.academic@imperial.ac.uk, Some other stuff thats even more boring"
+emails = re.findall(r'[\w\.-]+@[\w\.-]+', MyStr) 
+for email in emails:
+    print(email)
+
+
+f = open('../data/TestOaksData.csv', 'r')
+strings = re.findall(r'O.+', f.read())
+strings
+
+
+MyStr = "Samraat Pawar, s.pawar@imperial.ac.uk, Systems biology and ecological theory; Another academic, a.academic@imperial.ac.uk, Some other stuff thats equally boring; Yet another academic, y.a.academic@imperial.ac.uk, Some other stuff thats even more boring"
+tuples = re.findall(r'([\w\.-]+)@([\w\.-]+)', MyStr)
+print(tuples)
+for tuple in tuples:
+    print(tuple[0])
+    print(tuple[1])
+
+
+import re
+import urllib3
+
+http = urllib3.PoolManager()
+r = http.request('GET', 'https://www.imperial.ac.uk/silwood-park/academic-staff/')
+html = r.data
