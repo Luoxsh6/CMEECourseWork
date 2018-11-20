@@ -1,7 +1,7 @@
 # Week2
 `Python3`
 
-This is a rookie's Linux computing project   :ghost:  :ghost:
+This is a rookie's Python computing project   :ghost:  :ghost:
 
 ***
 
