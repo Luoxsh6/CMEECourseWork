@@ -8,9 +8,9 @@ __version__ = '0.0.1'
 import scipy as sc
 import scipy.integrate as integrate
 import matplotlib.pylab as p
+import matplotlib.backends.backend_pdf
 
-
-def dR_dt(pops, t=0):
+def dCR_dt(pops, t=0):
     """ Returns the growth rate of predator and prey populations at any given time step"""
 
     R = pops[0]
@@ -35,11 +35,13 @@ C0 = 5
 # initials conditions: 10 prey and 5 predators per unit area
 RC0 = sc.array([R0, C0])
 
-pops, infodict = integrate.odeint(dR_dt, RC0, t, full_output=True)
+pops, infodict = integrate.odeint(dCR_dt, RC0, t, full_output=True)
 
 print(infodict['message'])     # >>> 'Integration successful.'
 
 
+
+# Plot population density against time using matplotlib.pylab
 f1 = p.figure()  # Open empty figure object
 p.plot(t, pops[:, 0], 'g-', label='Resource density')  # Plot
 p.plot(t, pops[:, 1], 'b-', label='Consumer density')
@@ -49,7 +51,7 @@ p.xlabel('Time')
 p.ylabel('Population density')
 p.title('Consumer-Resource population dynamics')
 # p.show()  # To display the figure
-f1.savefig('../results/LV_model1.pdf')
+
 
 f2 = p.figure()
 p.plot(pops[:, 0], pops[:, 1], 'r-', label='Consumer density')
@@ -58,4 +60,10 @@ p.xlabel('Resource density')
 p.ylabel('Consumer density')
 p.title('Consumer-Resource population dynamics')
 # p.show()  # To display the figure
-f2.savefig('../results/LV_model2.pdf')  # Save figure
+
+# Save both figures into a single pdf
+pdf = matplotlib.backends.backend_pdf.PdfPages('../results/LV_model1.pdf')
+pdf.savefig(f1)
+pdf.savefig(f2)
+pdf.close()
+p.close('all')
