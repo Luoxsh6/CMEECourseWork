@@ -4,6 +4,7 @@ _a_global = 10
 
 
 def a_function():
+    """global"""
     _a_global = 5
     _a_local = 4
     print("Inside the function, the value is ", _a_global)
@@ -22,6 +23,7 @@ _a_global = 10
 
 
 def a_function():
+    """global"""
     global _a_global
     _a_global = 5
     _a_local = 4
