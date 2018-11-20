@@ -1,3 +1,10 @@
+#!/usr/bin/env python3    
+
+"""profiling with timeit""" 
+
+
+__author__ = 'Xiaosheng Luo'
+__version__ = '0.0.1'
 ##############################################################################
 # loops vs. list comprehensions: which is faster?
 ##############################################################################
@@ -19,8 +26,9 @@ from profileme2 import my_squares as my_squares_lc
 # my_squares_lc(iters)
 # print("my_squares_lc takes %f s to run." % (time.time() - start))
 
-%timeit my_squares_loops(iters)
-%timeit my_squares_lc(iters)
+# can't run directly
+# %timeit my_squares_loops(iters)
+# %timeit my_squares_lc(iters)
 
 
 ##############################################################################
@@ -33,13 +41,17 @@ from profileme import my_join as my_join_join
 
 from profileme2 import my_join as my_join
 
-%timeit(my_join_join(iters, mystring))
-%timeit(my_join(iters, mystring))
 
-# start = time.time()
-# my_join_join(iters, mystring)
-# print("my_join_join takes %f s to run." % (time.time() - start))
+# can't run directly
+# %timeit(my_join_join(iters, mystring))
+# %timeit(my_join(iters, mystring))
 
-# start = time.time()
-# my_join(iters, mystring)
-# print("my_join %f s to run." % (time.time() - start))
+# Another approach to measure the execution time
+import time
+start = time.time()
+my_squares_loops(iters)
+print("my_squares_loops takes %f s to run." % (time.time() - start))
+
+start = time.time()
+my_squares_lc(iters)
+print("my_squares_lc takes %f s to run." % (time.time() - start))
