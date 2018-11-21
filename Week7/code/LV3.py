@@ -11,14 +11,15 @@ import pylab as p  # Contains matplotlib for plotting
 import sys
 import matplotlib.backends.backend_pdf
 
+
 def dCR_dt(RC0, t=0):
-    """ Returns the growth rate of predator and prey populations at any given time step """   
-    RC = sc.zeros((t,2),dtype='int64')  #pre-allocate
-    RC[0,0] = RC0[0]
-    RC[0,1] = RC0[1]
+    """ Returns the growth rate of predator and prey populations at any given time step """
+    RC = sc.zeros((t, 2), dtype='float')  # pre-allocate
+    RC[0, 0] = RC0[0]
+    RC[0, 1] = RC0[1]
     for i in range(t-1):
-        RC[i+1,0] = RC[i,0] * (1 + r * (1 - RC[i,0] / K) - a * RC[i,1])
-        RC[i+1,1] = RC[i,1] * (1 - z + e * a * RC[i,0])
+        RC[i+1, 0] = RC[i, 0] * (1 + r * (1 - RC[i, 0] / K) - a * RC[i, 1])
+        RC[i+1, 1] = RC[i, 1] * (1 - z + e * a * RC[i, 0])
 
     return RC
 
@@ -26,7 +27,8 @@ def dCR_dt(RC0, t=0):
 # Define parameters:
 if len(sys.argv) == 6:
     r = float(sys.argv[1])  # Resource growth rate
-    a = float(sys.argv[2])  # Consumer search rate (determines consumption rate)
+    # Consumer search rate (determines consumption rate)
+    a = float(sys.argv[2])
     z = float(sys.argv[3])  # Consumer mortality rate
     e = float(sys.argv[4])  # Consumer production efficiency
     K = float(sys.argv[5])  # Carrying capacity
@@ -35,19 +37,20 @@ else:
     a = 0.1
     z = 0.4
     e = 0.75
-    K = 1000
+    K = 20
 
 
-# Now define time 
-t = 16
+# Now define time
+t = 100
 
 
 R0 = 10
 C0 = 5
 # initials conditions: 10 prey and 5 predators per unit area
-RC0 = sc.array([R0, C0],dtype='int64')
+RC0 = sc.array([R0, C0], dtype='float')
 RC = dCR_dt(RC0, t)
-print("After %s years, the consumer density is %s, the resource density is %s" %(t-1, RC[t-1,1], RC[t-1,0]))
+print("After %s years, the consumer density is %s, the resource density is %s" %
+      (t-1, RC[t-1, 1], RC[t-1, 0]))
 
 
 f1 = p.figure()  # Open empty figure object
