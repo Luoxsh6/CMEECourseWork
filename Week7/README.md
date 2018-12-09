@@ -1,4 +1,4 @@
-# Week3
+# Week7
 `python II`
 
 This is a rookie's python computing project   :ghost:  :ghost:
