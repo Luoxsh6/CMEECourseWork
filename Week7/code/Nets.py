@@ -1,49 +1,96 @@
-# !usr/bin/envs python3
+#!/usr/bin/python
 
-__author__ = 'Xiaosheng Luo'
-__version__ = '0.0.1'
+""" Python script for visualising a network of QMEE CDT collaborators."""
 
-"""Visualizes the QMEE CDT collaboration network"""
-
-import networkx as nx
+# Import necessary modules
 import csv
-import matplotlib.pyplot as p
-import numpy as np
-import pandas as pd
+import networkx as nx
 import scipy as sc
-
-# loading data
-links = pd.read_csv("../data/QMEE_Net_Mat_edges.csv")
-nodes = pd.read_csv("../data/QMEE_Net_Mat_nodes.csv")
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 
 
-links["id"] = links.columns  # add row names to links
-linkmelt = pd.melt(links, id_vars=["id"])  # melt link to 'id'
-linkmelt = linkmelt[~linkmelt['value'].isin([0])]  # delete value = 0
+# Collecting/generating info on the edges of the network.
+# Opens the csv file containing edge information.
+link_info = sc.genfromtxt("../data/QMEE_Net_Mat_edges.csv", delimiter=",")
 
-edges = linkmelt.apply(tuple, axis=1)  # make tuple
+# Removes the location names from the array/extracts info on interactions.
+links = link_info[1:, :]
 
-# print(edges)
-# print(nodes)
+# Identifies the presence of links between collaborating sites and creates an array of these links
+adjacency = sc.argwhere(links > 1.)
 
-pos = nx.circular_layout(nodes["id"])  # Creating a circular network
+# ~ weighted = ()
+# ~ for i in adjacency:
+# ~ weighted = weighted + ((i[0], i[1], (links[i[0], i[1]])),)
 
-G = nx.DiGraph()  # generate a networkx graph object
-G.add_nodes_from(nodes["id"])  # add nodes
+# Creates a tuple of connections between sites using the adjacency array.
+connect = ()
+for i in adjacency:
+    connect = connect + ((i[0], i[1]),)
 
-for (u, v, w) in edges:  # add edges
-    G.add_edge(u, v, weight=w)
-
-#  plot and save as svg
-f = p.figure()
-nx.draw_networkx(G, pos, node_size=900)
-f.savefig(r'../results/QMEENetpy.svg')
-p.close('all')
+# Creates a list of link weights using the links array.
+weights = []
+for i in adjacency:
+    weights.append((links[i[0], i[1]])/10)
 
 
-# edge_labels = dict([((u, v), d["weight"]) for u, v, d in G.edges(data=True)])
+# Collecting/generating info on the nodes in the network.
+# Opens the csv file containing the node information.
+node_info = sc.genfromtxt(
+    "../data/QMEE_Net_Mat_nodes.csv", delimiter=",", dtype=None)
 
-# nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+# Extracts the institution names from the node data.
+nodes = node_info[1:, 0]
 
-# G = nx.relabel_nodes(G, nodes["id"])
-# print(G["ICL"]["CEH"]["weight"])
+# Creates the variable NodSizs to make the size of the nodes in the network proportional to the number of PIs at the institution.
+NodSizs = []
+for i in node_info[1:, 2]:
+    NodSizs.append(float(i)*100)
+
+# Label nodes
+names = {}
+for i in range(len(nodes)):
+    names[i] = nodes[i]
+
+# Assign colours for node type
+colours = []
+for i in node_info[1:, 1]:
+    if i == 'University':
+        colours.append('b')
+    if i == 'Hosting Partner':
+        colours.append('g')
+    if i == 'Non-Hosting Partners':
+        colours.append('r')
+
+# Create items for the legend
+blue_patch = mpatches.Patch(color='blue', label='University')
+green_patch = mpatches.Patch(color='green', label='Hosting Partner')
+red_patch = mpatches.Patch(color='red', label='Non-Hosting Partner')
+
+
+# Drawng the network.
+# Plot graph
+plt.close('all')
+G = nx.Graph()
+
+# Creates a position variable causing the nodes to be arranged in a circle.
+pos = nx.circular_layout(range(len(nodes)))
+
+# Draws the network uing the above objects
+nx.draw_networkx(G, pos,
+                 nodelist=range(len(nodes)),
+                 node_color=colours,
+                 labels=names,
+                 font_size='13',
+                 node_size=NodSizs*1000,
+                 edgelist=connect,
+                 width=weights)
+# Removes the axes
+plt.axis('off')
+
+# Plots a legend to indicate the colour coding
+plt.legend(handles=[blue_patch, green_patch, red_patch], loc=2, fontsize=10)
+
+# Saves the plot.
+plt.savefig('../results/Nets_plot.svg')
