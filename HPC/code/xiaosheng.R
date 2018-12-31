@@ -58,8 +58,11 @@ neutral_time_series <- function(initial=initialise_max(7),duration=20){
 #8 plot a time series graph of neutral model species richness
 question_8 <- function(){
   y = neutral_time_series(initialise_max(100),duration=200)
+  
+  pdf(file="../results/Question8.pdf")
   plot(1:length(y), y, xlab="Generations", ylab = "Species Richness", cex=0.8, pch=20,
             main="Netural Model Species Richness Over Time Series", col="blue")
+  dev.off()
 }
 
 
@@ -106,11 +109,13 @@ question_12 <- function(){
   y1 = neutral_time_series_speciation(initialise_max(100),0.1,duration=200)
   y2 = neutral_time_series_speciation(initialise_min(100),0.1,duration=200)
   x = c(1:length(y1))
+  pdf(file="../results/Question12.pdf")
   plot(x, y1,xlab="Generations", ylab = "Species Richness",
        main="Netural Model Species Richness Over Time Series",col="red",pch=20,ylim =c(1,100))
   points(x, y2,col="blue",pch=20)
   legend('topright',c('initialise_max','initialise_min'),
          col=c('red','blue'), pch=c(20,20), bty="n")
+  dev.off()
 }
 
 
@@ -171,8 +176,10 @@ question_16 <- function(){
     }
   }
   average_oct=total_oct/(floor(duration/per)+1)
+  pdf(file="../results/Question16.pdf")
   barplot(average_oct, main = "Average Species Abundance Distribution", names.arg = c(2^((1:length(average_oct))-1)),
           xlab = "Number of Individuals per Species", ylab = "Number of Species") 
+  dev.off()
 }
 
 
@@ -208,6 +215,7 @@ challenge_A <- function(duration=200,v=0.1,size=100,alpha=1-0.972,sampling=100){
                                 max_down=mean_multi_max-bias_max,stringsAsFactors = TRUE)
   
   #plot
+  pdf(file="../results/ChallengeA.pdf")
   plot(confident_interval$min_mean, xlab = "Generation time", ylab = "Mean Species richness", main = "Netural Model Species Richness Over Time Series",
        col = "red", type = "l", ylim = range(0,100))
   segments(c(1:n),confident_interval$min_down,c(1:n),confident_interval$min_up,col="red",lwd = 0.75)   #add confidence interval
@@ -216,6 +224,7 @@ challenge_A <- function(duration=200,v=0.1,size=100,alpha=1-0.972,sampling=100){
   legend('topright',c('initialise_max','initialise_min'),
          col=c('green','red'), pt.cex=0.7, pch=c(20,20), bty="n")
   mtext("Confidence interval = 97.2%",side=4)
+  dev.off()
 }
 
 
@@ -257,6 +266,7 @@ challenge_B <- function(duration=200,v=0.1,size=100,alpha=1-0.972,sampling=100,i
     multicom_time_series[1:n,((i-1)*sampling+1):(i*sampling)]=replicate(sampling, neutral_time_series_speciation(multi_community[i,],v,duration))
   }
   
+  pdf(file="../results/ChallengeB.pdf")
   #calcualte mean
   mean_multi_community=matrix(nrow=n, ncol=num)
   sd_multi_community=matrix(nrow=n, ncol=num)
@@ -277,6 +287,7 @@ challenge_B <- function(duration=200,v=0.1,size=100,alpha=1-0.972,sampling=100,i
     lines(mean_multi_community[,i], col=c(i))
     segments(c(1:n),up_multi_community[,i],c(1:n),down_multi_community[,i],col=c(i))
   }
+  dev.off()
 }
 
 
@@ -345,6 +356,7 @@ question_20 <- function(iter=100){
   size2500_aver_oct=size2500_sum_oct/(length(all_iter_averoct)/4)
   size5000_aver_oct=size5000_sum_oct/(length(all_iter_averoct)/4)
   
+  pdf(file="../results/Question20.pdf")
   par(mfrow = c(2,2),oma=c(0,0,2,0))
   barplot(size500_aver_oct, names.arg = c(2^((1:length(size500_aver_oct))-1)),
           main = "Community size = 500",
@@ -359,6 +371,7 @@ question_20 <- function(iter=100){
           main = "Community size = 5000",
           xlab = "Number of Individuals per Species", ylab = "Number of Species")
   title("Average Species Abundance Distribution", outer=TRUE)
+  dev.off()
 }
 
 
@@ -400,4 +413,89 @@ challenge_C <- function(iter=100){
   lines(seq(0,(8*5000)), av_time_series_richness_5000[1:(8*5000+1)], col = "blue")
   legend("topright", title = "Community Size", c("500", "1000", "2500", "5000"),
          lty=1, col = c("yellow", "red", "green", "blue"), cex=0.9, bty="n")
+}
+
+
+#Challenge Question D
+challenge_D <- function(community_size, speciation_rate){
+  lineages = initialise_min(community_size)
+  abundances = c()
+  N = community_size
+  theta = speciation_rate*(community_size-1)/(1-speciation_rate)
+  
+  while (N > 1){
+    j = choose_two(length(lineages))
+    randnum = runif(1, 0, 1)
+    
+    if (randnum < theta/(theta+N-1)){
+      abundances = c(abundances, lineages[j[1]])
+    }
+    else lineages[j[2]] = (lineages[j[2]] + lineages[j[1]])
+    
+    lineages = lineages[-j[1]]
+    N = N-1
+  }
+  abundances = c(abundances, lineages)
+  return (abundances)
+}
+
+
+run_challenge_D <- function(){
+  tick = proc.time()[3]
+  sum_oct_500 = c(0)
+  sum_oct_1000 = c(0)
+  sum_oct_2500 = c(0)
+  sum_oct_5000 = c(0)
+  
+  for (i in 1:100){
+    if (i%%4==1){
+      sum_oct_500 = sum_vect(sum_oct_500, octaves(challenge_D(500, 0.00201)))
+    }
+    if ((i%%4==2)){
+      sum_oct_1000 = sum_vect(sum_oct_1000, octaves(challenge_D(1000, 0.00201)))
+    }
+    if (i%%4==3){
+      sum_oct_2500 = sum_vect(sum_oct_2500, octaves(challenge_D(2500, 0.00201)))
+    }
+    if (i%%4==0){
+      sum_oct_5000 = sum_vect(sum_oct_5000, octaves(challenge_D(5000, 0.00201)))
+    }
+  }
+  av_oct_500 = sum_oct_500/25
+  av_oct_1000 = sum_oct_1000/25
+  av_oct_2500 = sum_oct_2500/25
+  av_oct_5000 = sum_oct_5000/25
+  
+  pdf(file="../results/ChallengeD.pdf")
+  par(mfrow = c(2,2),oma=c(0,0,2,0))
+  barplot(av_oct_500, names.arg = c(2^((1:length(av_oct_500))-1)),
+          main = "Community size = 500",
+          xlab = "Number of Individuals per Species", ylab = "Number of Species", col = "darkblue")
+  barplot(av_oct_1000, names.arg = c(2^((1:length(av_oct_1000))-1)),
+          main = "Community size = 1000",
+          xlab = "Number of Individuals per Species", ylab = "Number of Species", col = "red")
+  barplot(av_oct_2500, names.arg = c(2^((1:length(av_oct_2500))-1)),
+          main = "Community size = 2500",
+          xlab = "Number of Individuals per Species", ylab = "Number of Species", col = "green")
+  barplot(av_oct_5000, names.arg = c(2^((1:length(av_oct_5000))-1)),
+          main = "Community size = 5000",
+          xlab = "Number of Individuals per Species", ylab = "Number of Species")
+  title("Average Species Abundance Distribution", outer=TRUE)
+  dev.off()
+  
+  tock = proc.time()[3]
+  run_time = as.numeric(tock - tick)
+  print (paste("Time spent by the coalescence theory: ", run_time, "s"))
+}
+
+
+cluster_run_time <- function(){
+  total_time = 0
+  for (i in 1:100){
+    file = paste("../results/my_test_file","_",i,".RData",sep = "")
+    load(file)
+    total_time = total_time + totaltime
+  }
+  
+  print (paste("Time spent by the cluster method: ", total_time, "s"))
 }

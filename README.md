@@ -41,11 +41,11 @@
  
 #### Python 3.6
 #### Modules
-'pickle' 'numpy' 'scipy' 'pandas' 'networkx' 'matplotlib'
+`pickle` `numpy` `scipy` `pandas` `networkx` `matplotlib`
  
 ### R 3.5.1
 #### Packages
-'lattice' 'reshape2' 'dplyr' 'tidyr' 'ggplot2' 'maps' 'knitr'
+`lattice` `reshape2` `dplyr` `tidyr` `ggplot2` `maps` `knitr`
 
 ### LaTeX
 
