@@ -9,11 +9,11 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 1.59 MiB on disk 
+Your Git repo size this week is about 64.57 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, .git, Week3
+Found the following directories in parent directory: Week1, Week7, Assessment, HPC, Week2, .git, BigProject, ModelFitting, Week3
 
 Found the following files in parent directory: .gitignore, README.md
 
@@ -40,6 +40,7 @@ __pycache__/
 
 # R Session Data files
 .RData
+Rplots.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -92,20 +93,59 @@ Printing contents of README.md:
 # **CMEE 2018-2019 Coursework Repository**
 
 ![ice-bear](http://cdn2us.denofgeek.com/sites/denofgeekus/files/styles/article_width/public/2017/08/we-bare-bears-grizz-panda-ice-bear.png?itok=ZAm1gpyl)
-## week1
-- introduction to Unix and Linux
-- Shell scripting
-- Version Control with Git
-- LaTeX
-## week2 
-- Python3
+
+
+## Contents
+### [Week1](https://github.com/Luoxsh6/CMEECourseWork/tree/master/Week1)
+  - introduction to Unix and Linux
+  - Shell scripting
+  - Version Control with Git
+  - LaTeX
+
+### [Week2](https://github.com/Luoxsh6/CMEECourseWork/tree/master/Week2)
+  - Python basics
+  - Python I/O
+  - Python programs
+  - Control statements
+  - Debugging
+
+### [Week3](https://github.com/Luoxsh6/CMEECourseWork/tree/master/Week3)
+  - R basics
+  - Vectorization
+  - Debugging
+  - Sweave and knitr
+  - Data wrangling
+  - Data visualization
+  - qplot and ggplot
+ 
+### [Week7](https://github.com/Luoxsh6/CMEECourseWork/tree/master/Week7)
+  - Scipy
+  - Plotting with matplotlib
+  - Profiling
+  - Networks
+  - Regular expressions
+  - Build workflows
+
+## Prerequisites
+ 
+### Ubuntu 16.04
+ 
+#### Python 3.6
+#### Modules
+'pickle' 'numpy' 'scipy' 'pandas' 'networkx' 'matplotlib'
+ 
+### R 3.5.1
+#### Packages
+'lattice' 'reshape2' 'dplyr' 'tidyr' 'ggplot2' 'maps' 'knitr'
+
+### LaTeX
 
 **To Be Continued...************************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 3 weekly directories: Week1, Week2, Week3
+Found 4 weekly directories: Week1, Week2, Week3, Week7
 
 The Week2 directory will be assessed 
 
@@ -116,7 +156,7 @@ PART 2: Checking weekly code and workflow...
 ======================================================================
 Assessing WEEK2...
 
-Found the following directories: code, sandbox, data, Results
+Found the following directories: code, sandbox, data
 
 Found the following files: README.md
 
@@ -129,7 +169,7 @@ Printing contents of README.md:
 # Week2
 `Python3`
 
-This is a rookie's Linux computing project   :ghost:  :ghost:
+This is a rookie's Python computing project   :ghost:  :ghost:
 
 ***
 
@@ -228,7 +268,10 @@ ___
 This work is licensed under a [Creative Commons Attribution 3.0 Unported License.](http://creativecommons.org/licenses/by/3.0/)
 **********************************************************************
 
-Found following files in results directory: ...
+Results directory missing!
+
+Creating Results directory...
+
 Found 20 code files: lc2.py, boilerplate.py, basic_csv.py, cfexercises2.py, scopy.py, align_seqs_better.py, dictionary.py, debugme.py, cfexercises1.py, tuple.py, basic_io.py, lc1.py, oaks_debugme.py, oaks.py, loops.py, align_seqs.py, sysargv.py, align_seqs_fasta.py, control_flow.py, test_control_flow.py
 
 ======================================================================
@@ -308,7 +351,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.01384s
+Time consumed = 0.02833s
 
 ======================================================================
 Inspecting script file boilerplate.py...
@@ -360,13 +403,14 @@ This is a boilerplate
 
 Code ran without errors
 
-Time consumed = 0.01094s
+Time consumed = 0.02871s
 
 ======================================================================
 Inspecting script file basic_csv.py...
 
 File contents are:
 **********************************************************************
+"""testing"""
 import csv
 
 # Read a file containing:
@@ -401,28 +445,25 @@ Testing basic_csv.py...
 basic_csv.py is a Python script file;
  checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
-
-Current Points = 99
+Found one or more doctrings!
 
 Output (only first 500 characters): 
 
 **********************************************************************
 ['Species', 'Infraorder', 'Family', 'Distribution', 'Body mass male (Kg)']
-('The species is', 'Species')
+The species is Species
 ['Daubentonia_madagascariensis', 'Chiromyiformes ', 'Daubentoniidae', 'Madagascar', '2.7']
-('The species is', 'Daubentonia_madagascariensis')
+The species is Daubentonia_madagascariensis
 ['Allocebus_trichotis', 'Lemuriformes', 'Cheirogaleidae', 'Madagascar', '0.1']
-('The species is', 'Allocebus_trichotis')
+The species is Allocebus_trichotis
 ['Avahi_laniger', 'Lemuriformes', 'Indridae', 'America', '1.03']
-('The species is', 'Avahi_laniger')
-['Avahi_occidentalis', 'Lemurifo
+The species is Avahi_laniger
+['Avahi_occidentalis', 'Lemuriformes', 'Indridae', 'Madagasc
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01686s
+Time consumed = 0.03051s
 
 ======================================================================
 Inspecting script file cfexercises2.py...
@@ -512,7 +553,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.01780s
+Time consumed = 0.03730s
 
 ======================================================================
 Inspecting script file scopy.py...
@@ -525,6 +566,7 @@ _a_global = 10
 
 
 def a_function():
+    """global"""
     _a_global = 5
     _a_local = 4
     print("Inside the function, the value is ", _a_global)
@@ -543,6 +585,7 @@ _a_global = 10
 
 
 def a_function():
+    """global"""
     global _a_global
     _a_global = 5
     _a_local = 4
@@ -560,26 +603,23 @@ Testing scopy.py...
 scopy.py is a Python script file;
  checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
-
-Current Points = 98
+Found one or more doctrings!
 
 Output (only first 500 characters): 
 
 **********************************************************************
-('Inside the function, the value is ', 5)
-('Inside the function, the value is ', 4)
-('Outside the function, the value is ', 10)
-('Inside the function, the value is ', 5)
-('Inside the function, the value is ', 4)
-('Outside the function, the value is', 5)
+Inside the function, the value is  5
+Inside the function, the value is  4
+Outside the function, the value is  10
+Inside the function, the value is  5
+Inside the function, the value is  4
+Outside the function, the value is 5
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01380s
+Time consumed = 0.02835s
 
 ======================================================================
 Inspecting script file align_seqs_better.py...
@@ -707,11 +747,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error:
-Traceback (most recent call last):
-  File "align_seqs_better.py", line 25, in <module>
-    for line in f1.readlines():
-ValueError: Mixing iteration and read methods would lose data
+Code ran without errors
+
+Time consumed = 3.36923s
 
 ======================================================================
 Inspecting script file dictionary.py...
@@ -770,13 +808,13 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
-{'Rodentia': set(['Peromyscus crinitus', 'Mus domesticus', 'Gerbillus henleyi', 'Cleithrionomys rutilus']), 'Afrosoricida': set(['Microgale dobsoni', 'Microgale talazaci']), 'Chiroptera': set(['Myotis lucifugus']), 'Carnivora': set(['Arctocephalus gazella', 'Lyacon pictus', 'Canis lupus'])}
+{'Chiroptera': {'Myotis lucifugus'}, 'Afrosoricida': {'Microgale talazaci', 'Microgale dobsoni'}, 'Rodentia': {'Gerbillus henleyi', 'Mus domesticus', 'Cleithrionomys rutilus', 'Peromyscus crinitus'}, 'Carnivora': {'Arctocephalus gazella', 'Canis lupus', 'Lyacon pictus'}}
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01565s
+Time consumed = 0.02800s
 
 ======================================================================
 Inspecting script file debugme.py...
@@ -784,10 +822,12 @@ Inspecting script file debugme.py...
 File contents are:
 **********************************************************************
 def createabug(x):
-	y = x**4
-	z = 1
-	y = y/z
-	return y
+    """debug"""
+    y = x**4
+    z = 1
+    y = y/z
+    return y
+
 
 createabug(25)
 **********************************************************************
@@ -797,10 +837,7 @@ Testing debugme.py...
 debugme.py is a Python script file;
  checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
-
-Current Points = 97
+Found one or more doctrings!
 
 Output (only first 500 characters): 
 
@@ -810,13 +847,14 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.01571s
+Time consumed = 0.02725s
 
 ======================================================================
 Inspecting script file cfexercises1.py...
 
 File contents are:
 **********************************************************************
+"""fine docstrings"""
 for i in range(3, 17):
     print('hello')
 
@@ -850,10 +888,7 @@ Testing cfexercises1.py...
 cfexercises1.py is a Python script file;
  checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
-
-Current Points = 96
+Found one or more doctrings!
 
 Output (only first 500 characters): 
 
@@ -899,7 +934,7 @@ hello
 
 Code ran without errors
 
-Time consumed = 0.01591s
+Time consumed = 0.02921s
 
 ======================================================================
 Inspecting script file tuple.py...
@@ -947,20 +982,29 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
+('Passerculus sandwichensis', 'Savannah sparrow', 18.7)
+('Delichon urbica', 'House martin', 19)
+('Junco phaeonotus', 'Yellow-eyed junco', 19.5)
+('Junco hyemalis', 'Dark-eyed junco', 19.6)
+('Tachycineata bicolor', 'Tree swallow', 20.2)
+('Passerculus sandwichensis', 'Savannah sparrow', 18.7)
+('Delichon urbica', 'House martin', 19)
+('Junco phaeonotus', 'Yellow-eyed junco', 19.5)
+('Junco hyemalis', 'Dark-eyed junco', 19.6)
+('Tachycineata bicolor', 'Tree swallow', 20.2)
 
 **********************************************************************
 
-Encountered error:
-  File "tuple.py", line 29
-    [print(birds[i]) for i in range(len(birds))]
-         ^
-SyntaxError: invalid syntax
+Code ran without errors
+
+Time consumed = 0.02572s
 
 ======================================================================
 Inspecting script file basic_io.py...
 
 File contents are:
 **********************************************************************
+"""docstring"""
 #############################
 # FILE INPUT
 #############################
@@ -1019,10 +1063,7 @@ Testing basic_io.py...
 basic_io.py is a Python script file;
  checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
-
-Current Points = 95
+Found one or more doctrings!
 
 Output (only first 500 characters): 
 
@@ -1053,7 +1094,7 @@ Fourth Line
 
 Code ran without errors
 
-Time consumed = 0.01748s
+Time consumed = 0.03678s
 
 ======================================================================
 Inspecting script file lc1.py...
@@ -1113,13 +1154,15 @@ Found one or more doctrings!
 Output (only first 500 characters): 
 
 **********************************************************************
-(['Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor'], '\n', ['Savannah sparrow', 'House martin', 'Yellow-eyed junco', 'Dark-eyed junco', 'Tree swallow'], '\n', [18.7, 19, 19.5, 19.6, 20.2])
+['Passerculus sandwichensis', 'Delichon urbica', 'Junco phaeonotus', 'Junco hyemalis', 'Tachycineata bicolor'] 
+ ['Savannah sparrow', 'House martin', 'Yellow-eyed junco', 'Dark-eyed junco', 'Tree swallow'] 
+ [18.7, 19, 19.5, 19.6, 20.2]
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01574s
+Time consumed = 0.02653s
 
 ======================================================================
 Inspecting script file oaks_debugme.py...
@@ -1227,7 +1270,7 @@ FOUND AN OAK!
 
 Code ran without errors
 
-Time consumed = 0.02300s
+Time consumed = 0.05620s
 
 ======================================================================
 Inspecting script file oaks.py...
@@ -1245,6 +1288,7 @@ taxa = ['Quercus robur',
 
 
 def is_an_oak(name):
+    """is_an_oak"""
     return name.lower().startswith('quercus ')
 
 
@@ -1276,30 +1320,28 @@ Testing oaks.py...
 oaks.py is a Python script file;
  checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
-
-Current Points = 94
+Found one or more doctrings!
 
 Output (only first 500 characters): 
 
 **********************************************************************
-set(['Quercus robur', 'Quercus cerris', 'Quercus petraea'])
-set(['Quercus robur', 'Quercus cerris', 'Quercus petraea'])
-set(['QUERCUS ROBUR', 'QUERCUS CERRIS', 'QUERCUS PETRAEA'])
-set(['QUERCUS ROBUR', 'QUERCUS CERRIS', 'QUERCUS PETRAEA'])
+{'Quercus petraea', 'Quercus robur', 'Quercus cerris'}
+{'Quercus petraea', 'Quercus robur', 'Quercus cerris'}
+{'QUERCUS PETRAEA', 'QUERCUS CERRIS', 'QUERCUS ROBUR'}
+{'QUERCUS PETRAEA', 'QUERCUS CERRIS', 'QUERCUS ROBUR'}
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.01683s
+Time consumed = 0.03061s
 
 ======================================================================
 Inspecting script file loops.py...
 
 File contents are:
 **********************************************************************
+"""loops"""
 # FOR loops in Python
 for i in range(5):
     print(i)
@@ -1331,10 +1373,7 @@ Testing loops.py...
 loops.py is a Python script file;
  checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
-
-Current Points = 93
+Found one or more doctrings!
 
 Output (only first 500 characters): 
 
@@ -1463,7 +1502,7 @@ GERONIMO! infinite loop! ctrl+c
 
 Code ran without errors
 
-Time consumed = 10.58340s
+Time consumed = 10.26272s
 
 ======================================================================
 Inspecting script file align_seqs.py...
@@ -1561,7 +1600,7 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.08171s
+Time consumed = 0.07376s
 
 ======================================================================
 Inspecting script file sysargv.py...
@@ -1569,7 +1608,7 @@ Inspecting script file sysargv.py...
 File contents are:
 **********************************************************************
 #!/usr/bin/env python3
-
+"""sys.argvs"""
 import sys
 print("This is the name of the script: ", sys.argv[0])
 print("Number of arguments: ", len(sys.argv))
@@ -1581,23 +1620,20 @@ Testing sysargv.py...
 sysargv.py is a Python script file;
  checking for docstrings...
 
-Found no doctrings!
-1 pt deducted
-
-Current Points = 92
+Found one or more doctrings!
 
 Output (only first 500 characters): 
 
 **********************************************************************
-('This is the name of the script: ', 'sysargv.py')
-('Number of arguments: ', 1)
-('The arguments are: ', "['sysargv.py']")
+This is the name of the script:  sysargv.py
+Number of arguments:  1
+The arguments are:  ['sysargv.py']
 
 **********************************************************************
 
 Code ran without errors
 
-Time consumed = 0.05874s
+Time consumed = 0.04822s
 
 ======================================================================
 Inspecting script file align_seqs_fasta.py...
@@ -1714,11 +1750,9 @@ Output (only first 500 characters):
 
 **********************************************************************
 
-Encountered error:
-Traceback (most recent call last):
-  File "align_seqs_fasta.py", line 25, in <module>
-    for line in f1.readlines():
-ValueError: Mixing iteration and read methods would lose data
+Code ran without errors
+
+Time consumed = 3.38956s
 
 ======================================================================
 Inspecting script file control_flow.py...
@@ -1833,7 +1867,7 @@ True
 
 Code ran without errors
 
-Time consumed = 0.01425s
+Time consumed = 0.02790s
 
 ======================================================================
 Inspecting script file test_control_flow.py...
@@ -1904,19 +1938,19 @@ Output (only first 500 characters):
 
 Code ran without errors
 
-Time consumed = 0.04506s
+Time consumed = 0.06914s
 
 ======================================================================
 ======================================================================
 Finished running scripts
 
-Ran into 3 errors
+Ran into 0 errors
 
 ======================================================================
 ======================================================================
 
 FINISHED WEEKLY ASSESSMENT
 
-Current Points for the Week = 92
+Current Points for the Week = 100
 
 NOTE THAT THESE ARE POINTS, NOT MARKS FOR THE WEEK!
