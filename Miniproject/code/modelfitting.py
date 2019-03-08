@@ -237,7 +237,7 @@ print("Find hyperparameter K based on HSV color space after masking & histogram"
 training_accuracy = []
 test_accuracy = []
 # n_neighbors
-neighbors_settings = range(1, 10)
+neighbors_settings = range(1, 20)
 
 for n_neighbors in neighbors_settings:
     clf = KNeighborsClassifier(n_neighbors=n_neighbors)
@@ -550,7 +550,6 @@ print("[INFO] HSV hisograms after masking RF classifier complete in {:.0f}m {:.0
 y_predprob = rf0.predict_proba(testHMVI)
 print ("[INFO] AUC Score(test): %f" % metrics.roc_auc_score(testHMVL_onehot, y_predprob))
 print("-" * 27)
-
 # # gridsearch for the n_estimators
 # print("Gridsearch for Random Forest hyperparameters")
 # param_test1 = {'n_estimators':range(50,200,10)}
@@ -602,7 +601,6 @@ print("[INFO] HSV hisograms after masking RF classifier complete in {:.0f}m {:.0
 
 y_predprob = rf1.predict_proba(testHMVI)
 print ("AUC Score (test): %f" % metrics.roc_auc_score(testHMVL_onehot, y_predprob))
-print("-" * 27)
 
 # feels like after the gridsearch it does't get better results
 # compare to the first RF model, so report the first model
@@ -666,7 +664,7 @@ plt.xlabel('False Positive Rate', fontsize=13)
 plt.ylabel('True Positive Rate', fontsize=13)
 plt.grid(b=True, ls=':')
 plt.legend(loc='lower right', fancybox=True, framealpha=0.8, fontsize=12)
-plt.title(u'ROC Curve', fontsize=17)
+plt.title(u'RF ROC curve', fontsize=17)
 plt.pause(3)
 plt.savefig('../results/All-ROC.png', transparent=True)
 print("saving images to ../results/All-ROC.png")
