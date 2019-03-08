@@ -4,12 +4,12 @@
 # Arguments: none
 # Date: March 2019
 
-# echo -e "\nInstall some necessary packages\n"
-# sudo pip3 install opencv-python
-# sudo pip3 install sklearn
-# sudo pip3 install xgboost
-# echo -e "\nRunning Script, it takes about 2 min, please take a sip of tea\n"
-# python3.6 modelfitting.py
+echo -e "\nInstall some necessary packages\n"
+sudo pip3 install opencv-python
+sudo pip3 install sklearn
+sudo pip3 install xgboost
+echo -e "\nRunning Script, it takes about 2 min, please take a sip of tea\n"
+python3.6 modelfitting.py
 
 echo -e "\nGenerate Report\n"
 
