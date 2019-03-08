@@ -1,7 +1,7 @@
 
 # Comparison of Plant Seedlings Images Classification Models
 `Python3` `Image Classification` `Machine Learning` `Muggle‘s project`
-
+![doggy](https://api.jikipedia.com/upload/e1370ff509f36594499e5a6a98de3d6a.jpeg)
 
 ```Bash
     # run this code for testing
