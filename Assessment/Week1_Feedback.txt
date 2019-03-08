@@ -9,11 +9,11 @@ Note that:
 
 ======================================================================
 ======================================================================
-Your Git repo size this week is about 1.55 MiB on disk 
+Your Git repo size this week is about 64.57 MiB on disk 
 
 PART 1: Checking project workflow...
 
-Found the following directories in parent directory: Week1, Assessment, Week2, .git
+Found the following directories in parent directory: Week1, Week7, Assessment, HPC, Week2, .git, BigProject, ModelFitting, Week3
 
 Found the following files in parent directory: .gitignore, README.md
 
@@ -25,8 +25,7 @@ Printing contents of .gitignore:
 **********************************************************************
 *~
 *.tmp
-results/*
-[Ss]andbox/
+.vscode
 
 # Python
 *.py[co]
@@ -41,6 +40,7 @@ __pycache__/
 
 # R Session Data files
 .RData
+Rplots.pdf
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -93,20 +93,59 @@ Printing contents of README.md:
 # **CMEE 2018-2019 Coursework Repository**
 
 ![ice-bear](http://cdn2us.denofgeek.com/sites/denofgeekus/files/styles/article_width/public/2017/08/we-bare-bears-grizz-panda-ice-bear.png?itok=ZAm1gpyl)
-## week1
-- introduction to Unix and Linux
-- Shell scripting
-- Version Control with Git
-- LaTeX
-## week2 
-- Python3
+
+
+## Contents
+### [Week1](https://github.com/Luoxsh6/CMEECourseWork/tree/master/Week1)
+  - introduction to Unix and Linux
+  - Shell scripting
+  - Version Control with Git
+  - LaTeX
+
+### [Week2](https://github.com/Luoxsh6/CMEECourseWork/tree/master/Week2)
+  - Python basics
+  - Python I/O
+  - Python programs
+  - Control statements
+  - Debugging
+
+### [Week3](https://github.com/Luoxsh6/CMEECourseWork/tree/master/Week3)
+  - R basics
+  - Vectorization
+  - Debugging
+  - Sweave and knitr
+  - Data wrangling
+  - Data visualization
+  - qplot and ggplot
+ 
+### [Week7](https://github.com/Luoxsh6/CMEECourseWork/tree/master/Week7)
+  - Scipy
+  - Plotting with matplotlib
+  - Profiling
+  - Networks
+  - Regular expressions
+  - Build workflows
+
+## Prerequisites
+ 
+### Ubuntu 16.04
+ 
+#### Python 3.6
+#### Modules
+'pickle' 'numpy' 'scipy' 'pandas' 'networkx' 'matplotlib'
+ 
+### R 3.5.1
+#### Packages
+'lattice' 'reshape2' 'dplyr' 'tidyr' 'ggplot2' 'maps' 'knitr'
+
+### LaTeX
 
 **To Be Continued...************************************************************************
 
 ======================================================================
 Looking for the weekly directories...
 
-Found 2 weekly directories: Week1, Week2
+Found 4 weekly directories: Week1, Week2, Week3, Week7
 
 The Week1 directory will be assessed 
 
@@ -117,7 +156,7 @@ PART 2: Checking weekly code and workflow...
 ======================================================================
 Assessing WEEK1...
 
-Found the following directories: Code, Data, Sandbox, Results
+Found the following directories: Code, Data, Sandbox
 
 Found the following files: README.md
 
@@ -202,7 +241,10 @@ ___
 This work is licensed under a [Creative Commons Attribution 3.0 Unported License.](http://creativecommons.org/licenses/by/3.0/)
 **********************************************************************
 
-Found following files in results directory: ...
+Results directory missing!
+
+Creating Results directory...
+
 Found 11 code files: ConcatenateTwoFiles.sh, CountLines.sh, variables.sh, CompileLaTeX.sh, csvtospace.sh, FirstExample.tex, MyExampleScript.sh, FirstBiblio.bib, UnixPrac1.txt, tabtocsv.sh, boilerplate.sh
 
 Found the following extra files: FirstExample.pdf
@@ -343,29 +385,29 @@ rm: cannot remove '*.bbl': No such file or directory
 rm: cannot remove '*.log': No such file or directory
 rm: cannot remove '*.blg': No such file or directory
 
-** (evince:27552): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2018-19/Coursework/StudentRepos/XiaoshengLuo_XL18218/Week1/Code/.tex.pdf': No such file or directory
+** (evince:12185): WARNING **: Error when getting information for file '/home/mhasoba/Documents/Teaching/IC_CMEE/2018-19/Coursework/StudentRepos/XiaoshengLuo_XL18218/Week1/Code/.tex.pdf': No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
-** (evince:27552): WARNING **: Error setting file metadata: No such file or directory
+** (evince:12185): WARNING **: Error setting file metadata: No such file or directory
 
 ======================================================================
 Inspecting script file csvtospace.sh...
@@ -461,7 +503,7 @@ Hello mhasoba
 
 Code ran without errors
 
-Time consumed = 0.01160s
+Time consumed = 0.00408s
 
 ======================================================================
 Inspecting script file FirstBiblio.bib...
@@ -536,7 +578,7 @@ Done!
 
 Code ran without errors
 
-Time consumed = 0.01752s
+Time consumed = 0.00888s
 
 ======================================================================
 Inspecting script file boilerplate.sh...
@@ -566,7 +608,7 @@ This is a shell script!
 
 Code ran without errors
 
-Time consumed = 0.00976s
+Time consumed = 0.00413s
 
 ======================================================================
 ======================================================================
