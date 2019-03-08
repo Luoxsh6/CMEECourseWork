@@ -1,0 +1,176 @@
+\documentclass[11pt]{article}
+
+\newcommand{\reporttitle}{Comparison of Plant Seedlings Images Classification Models }
+\newcommand{\reportauthor}{Xiaosheng Luo}
+\newcommand{\reporttype}{Mini-project}
+\newcommand{\cid}{01627437}
+
+\usepackage[left=4.1cm,right=4.1cm,top=2.97cm,bottom=5cm]%
+{geometry}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{lineno}
+\usepackage{setspace}
+\graphicspath{ {../results/} }
+
+\begin{document}
+% front page
+\input{Frontpage}
+
+
+\doublespacing
+\linenumbers 
+\section{Abstract}
+Image classification is a basic task in the field of computer vision, with the development of deep learning, the accuracy of computer vision recognition is constanly improving, showing the bright future in the practical applications, especially in the file of precision agriculture. Many studies are working to develop a crop detection technology that combines unmanned aerial vehicle (UAV) and spectroscopy. And a good image recognition model is the basis of this technology, but also the problem to be solved by this mini project. Here, I build several baseline models (KNN, SVM, Random Forest, XGBoost and Resnet18), to evaluate the performance of these algorithms and also improve my understanding of them. 
+\\
+\\
+\textbf{Keywords:} Image Clssification, Plant Seedlings, Machine learning, Model Comparison, ROC Curve
+
+
+\section{Introduction}
+Developing our understanding of the world around us is a fundamental part of the scientific process. Biologists are particularly interested in living organisms and the ways in which they interact with each other and their environment. One method through which knowledge can be gained is by attempting to model observations in relation to parameters and variables of interest. This is now common practice in the fields of Ecology and Evolution and the fitting of models to data formed the foundation of this work. 
+\\
+\\
+Whilst all models seek to describe observable patterns, there are different ways in which the models themselves are formulated. A phenomenological model finds a statistical association between explanatory and response variables that best describes the observed data. Crucially, such a model need not incorporate any underlying processes, making identification of causal links potentially problematic, yet may still make highly accurate predictions. In contrast, mechanistic models utilise biological, chemical and physical processes explicitly in order to predict observed data \cite{brown2004toward, schoolfield1981non}. Consequently, through including a mechanistic basis, these models have the potential to provide more biologically relevant information than a purely statistical model. In principle, a mechanistic model might therefore be preferred in many cases, provided it can fit empirical data as well or better than a phenomenological version.
+\\
+\\
+One area in Biology for which mechanistic models have been developed is metabolism. As a fundamental process found in all living organisms, some think that metabolic rates have the potential to explain many aspects of biology, from life-history strategies, through population sizes to evolutionary rates \cite{brown2004toward}. The biochemical reactions underpinning metabolism are themselves governed by chemical and physical laws. In particular, temperature is a key factor in determining the rate of a biological reaction, a relationship that can be described by the Boltzmann factor (\begin{math}e^{-E/kT}\end{math}, see Equation 1 for parameter descriptions.) when the organism is within its normal operating temperature range \cite{schoolfield1981non, gillooly2001effects}. By incorporating this knowledge into a model, it should therefore be possible to predict the metabolic rate of an organism at a given temperature from a mechanistic approach. Such a model could be of particular use in the prediction of species' responses to climate change through the direct assessment of the impact that an increase in temperature could have on their metabolic rate, and thus fitness, in addition to potential consequences at the population and ecosystem level \cite{thomas2012global, brown2004toward}. Furthermore, because the models will include the mechanistic processes underpinning such predictions, a deeper understanding of the response can obtained.
+\\
+\\
+The primary objective of this study is to ascertain whether or not mechanistic models (incorporating the Boltzmann factor) or phenomenological ones are better fits to the thermal response curves of individual fitness in plants. Specifically, does the incorporation of parameters describing bio-chemical and physical properties enhance the predictive power of the mechanistic model over a statistical one. The exact models used can be seen in Equations 1-4, of which 1 and 2 are mechanistic and 3 and 4 are phenomenological. Models 2 and 4 are reduced forms of 1 and 3 respectively, further enabling  consideration of the the impact of model complexity on the fit to the data.
+\section{Materials \& Methods}
+\subsection{Overview}
+In order to address the question set in the title of this report, I attempted to fit four different models to thermal response data using non-linear least squares. Specifically, two of these models were mechanistic and two were phenomenological.
+The models used were:
+\\
+\\
+The Schoolfield-Sharpe model incorporating high-temperature inactivation (referred to as the `Schoolfield model' from here on) \cite{schoolfield1981non}.   
+\begin{equation}
+B = \frac{B_0 e^{\frac{-E}{k}(\frac{1}{T} - \frac{1}{283.15})}}{1 + e^{\frac{E_h}{k}(\frac{1}{T_h} - \frac{1}{T})}}
+\end{equation} 
+Where \begin{math}B\end{math} is the predicted trait value, \begin{math}B_0\end{math} is the trait value at 283.15 Kelvin(K), \begin{math}E\end{math} is the activation energy (eV) of the rate controlling enzyme under normal operating temperatures, \begin{math}k\end{math} is the Boltzmann constant (8.617 x 10\begin{math}^{-5}\end{math} eVK\begin{math}^{-1}\end{math}), \begin{math}T\end{math} is the temperature under consideration (K), \begin{math}E_h\end{math} is high temperature deactivation energy of the rate controlling enzyme (eV) and \begin{math}T_h\end{math} is the temperature (K) at which the enzyme is 50\% high-temperature deactivated. 
+\\
+\\
+The Boltzmann-Arrhenius model (`Boltzmann model') \cite{schoolfield1981non}.
+\begin{equation}
+B = B_0 e^{\frac{-E}{k}(\frac{1}{T} - \frac{1}{283.15})}
+\end{equation}
+In which the symbols are equivalent to those described for the Schoolfield model. 
+\\
+\\
+A cubic polynomial function (`Cubic model').
+\begin{equation}
+B = B_0 + B_1T + B_2T^2 + B_3T^3
+\end{equation}
+Where \begin{math}B\end{math} is the predicted trait value, \begin{math}T\end{math} is the temperature under consideration (\degree C), and \begin{math}B_0\end{math}, \begin{math}B_1\end{math}, \begin{math}B_2\end{math} and \begin{math}B_3\end{math} are parameters influencing the shape of the curve.
+\\
+\\
+A quadratic polynomial function (`Quadratic model').
+\begin{equation}
+B = B_0 + B_1T + B_2T^2
+\end{equation}
+With the symbols being equivalent to in the Cubic model.
+
+\subsection{Dataset}
+The data used to address the question consisted of a subset of the Biotraits database, restricted to thermal responses of plants only, and was kindly provided by Samraat Pawar. The dataset itself contains thousands of thermal responses, associated with additional details such as the species identity, ecological information about the species and the method through which the data was collected. 
+
+\subsection{Data Manipulation}
+Prior to the use of the data for model fitting, manipulation was required to extract the information that was relevant to my analysis. This process was conducted using the open-source software R \cite{R}.
+\\
+\\
+A subset of the original data was created to include only variables that were important for subsequent analysis. In some cases, missing values were replaced with data from an associated variable, however this was not always possible and where standardised trait values were missing, the associated rows were removed. Following this, individual thermal response curves were removed if recordings had been made at fewer than five unique temperatures. Finally, if there were negative trait values within an individual thermal response curve, these were removed by adding the absolute value of the minimum recorded trait value to all trait values within that curve. 
+
+\subsection{Parameter estimation}
+Initial parameter values, used for fitting the mechanistic models, were extracted from the individual thermal response curves. \begin{math}T_h\end{math}(K) was estimated as the temperature at which the maximum trait value occurred. The individual response data was then subsetted to contain only trait data recorded at temperatures equal to or less than the \begin{math}T_h\end{math} estimate. Subsequently, only trait values greater than zero were log transformed and plotted against -1/\begin{math}kT\end{math} (where \begin{math}k\end{math} is the Boltzmann constant and \begin{math}T\end{math} is the temperature in Kelvin). From this, a linear model was fitted with the slope being the estimate for \begin{math}E\end{math}. \begin{math}B_0\end{math} was estimated as the exponential of the predicted log(trait value) at -1/\begin{math}k\end{math}*283.15. \begin{math}E_h\end{math} was estimated as 2\begin{math}E\end{math}. If it was not possible to extract parameter estimates in this way, for example due to too few data points for linear regression, then the parameters were set as \begin{math}E\end{math} = 0.6, \begin{math}E_h\end{math} = 1.2, \begin{math}T_h\end{math} = 290 and \begin{math}B_0\end{math} = 0.1.
+
+\subsection{Model fitting}
+The models were fitted in Python, using the minimize function of the package lmfit with the method set to `leastsq'. This was conducted on untransformed data. 
+\\
+\\
+From this, the best estimates for the model parameters, the Akiake Information Criterion (AIC) and Bayes Information Criterion (BIC) and the R\begin{math}^2\end{math} values, for each model applied to each individual thermal response, were recorded if the model converged.
+
+\subsection{Analysis of model fits}
+Analysis of the generated data was conducted in R \cite{R}. The best fitting models for each thermal response curve were identified by finding the smallest AIC and BIC values \cite{johnson2004model}. Best fitting models with R\begin{math}^2\end{math} values of less than or equal to zero were removed from the analysis. The number of times each model was identified as being the best fitting was calculated to compare model fit across the four potential models. These counts were then combined to produce overall totals for mechanistic versus phenomenological models.
+\\
+\\
+Subsequent analysis was also conducted in which only the Schoolfield and Cubic models were considered, so that the fit of mechanistic and phenomenological models with equal numbers of parameters could be directly compared. 
+  
+\section{Results}
+In total, 993 individual thermal response curves from the original dataset had a best fitting model with an R\begin{math}^2\end{math} value greater than 0, with many response curves being fitted well by multiple models. The AIC and BIC scores were generally in agreement regarding the best model, however as shown in Table 1 there were a few situations in which they disagreed.
+
+\begin{center}
+\begin{figure}
+\includegraphics[scale = 0.8]{MTD2813}
+\caption{A graph depicting the fit of all four models to a thermal response curve where the Schoolfield model was best.}
+\label{fig: MTD2813}
+\end{figure}
+\begin{figure}
+\includegraphics[scale = 0.8]{MTD2632}
+\caption{A graph depicting the fit of all four models to a thermal response curve where the Cubic model was best}
+\label{fig: MTD2632}
+\end{figure}
+\end{center}
+Overall, Table 1 clearly demonstrates that when considering the four proposed models, the Schoolfield model is the best fitting for the most individual response curves, followed by the Cubic model. Interestingly, in 119 cases, both the Schoolfield and Boltzmann models were tied for best fitting.
+\begin{center}
+\begin{table}
+\begin{tabular}{|c|c|c|}
+\hline
+Model & Best fit count (AIC) & Best fit count (BIC)\\
+\hline
+Schoolfield & 409 & 412\\
+Boltzmann & 36 & 34\\
+Cubic & 292 & 292\\
+Quadratic & 140 & 139\\
+Schoolfield/Boltzmann & 119 & 119\\
+\hline
+\end{tabular}
+\caption{The number of times that each model was the best fitting according to the AIC and BIC scores.}
+\end{table}
+\begin{figure}
+\includegraphics[scale = 0.8]{mechan_vs_phenom_pie}
+\caption{A pie chart depicting the percentage of best fitting models that were Mechanistic versus Phenomenological, when considering all four proposed models.}
+\label{fig: mechanpie}
+\end{figure}
+\begin{figure}
+\includegraphics[scale = 0.8]{Schoolf_Cubic_pie}
+\caption{A pie chart depicting the percentage of times the best fitting model was either Schoolfield or Cubic, when considering only these two models.}
+\label{fig: Schoolf_pie}
+\end{figure}
+\end{center}
+Taking the values in Table 1 and grouping according the whether the model is mechanistic or phenomenological generates Figure~\ref{fig: mechanpie} when considering the BIC based counts. This further indicates that the mechanistic models are more successful at fitting the observed thermal response data than those that are phenomenological. 
+\\
+\\
+In addition, I considered only the fits of the Schoolfield and Cubic models, allowing for a direct comparison between a mechanistic model and a phenomenological model with an equal number of parameters. Although AIC and BIC scores take the number of parameters into account I believe that this head-to-head provides further evidence for consideration in relation to whether or not mechanistic models fit thermal response curves better than phenomenological ones. The result of this comparison was that the Schoolfield model was the best fit for 577 individual thermal response curves and that the Cubic was best 416 times, summarised in terms of percentages in Figure~\ref{fig: Schoolf_pie}. This result again suggests that a mechanistic model is a better fit to the thermal response data than a phenomenological alternative.
+
+\section{Discussion}
+Overall, the above results demonstrate that when considering all four proposed models, those that are mechanistic are a better fit to the observed data than the phenomenological ones for the majority of individual response curves, as indicated by AIC and BIC, depicted in Figure~\ref{fig: mechanpie}.
+\\
+\\
+Whilst the Boltzmann model is identified as the best fitting for a number of thermal responses, it is important to remember that it is inherently limited in its capacity to fit all observed trait responses. This is due to it lacking any parameter/s which account for the fact that metabolic rates do not, in reality, continue to increase exponentially with temperature, as the Boltzmann equation suggests. Instead, past a certain thermal limit, T\begin{math}_{pk}\end{math}, metabolic rates are observed to decline. As such, the good fit of the Boltzmann model to the data is only possible for temperatures below T\begin{math}_{pk}\end{math}. This is a well documented caveat of the model and it has subsequently been suggested that the model is only applicable for temperatures in the range of 0 - 40 \degree Celsius \cite{knies2010erroneous, brown2004toward, gillooly2001effects}. As a number of the response curves in the dataset contain a region of increasing trait values followed by a sharp decline as the temperature increases from low to high, it is impossible for the Boltzmann model to provide a full picture of the biological process underpinning the observations. In contrast, the Schoolfield model employed here does contain a term which accounts for the decline in enzyme activity, and thus metabolic rate, at temperatures higher than T\begin{math}_{pk}\end{math}. The Schoolfield model should therefore provide a more biologically relevant description of the observed thermal responses than the Boltzmann model, in addition to being a better fit to the data. For a clear depiction of this see Figure~\ref{fig: MTD2813}, in which the Boltzmann and Schooflield overlap for the rising part of the curve but the Boltzmann is unable to fit the data at higher temperature values.
+\\
+\\
+Limitations can also be identified in the Quadratic model, in particular, the fact that it is only able to fit symmetrical curves. Although it can therefore predict the rise and fall in trait values as temperature increases, it does so in a way that does not match empirical results well. Specifically, whilst the metabolic rate initially increases in the shape of a gradual upward curve, the rate of increase declines towards T\begin{math}_{pk}\end{math} and past this it declines rapidly. The result is left skewed distribution containing various types of curvature \cite{knies2010erroneous}. Furthermore, a quadratic function that rises and falls with increasing \begin{math}x\end{math} has a concave shape across its entire range when viewed from below, which, as indicated above, is not consistent with observations of metabolic responses to temperature. Such observations can however be better approximated by the Cubic function through the addition of an \begin{math}x^3\end{math} term multiplied by a fourth parameter.
+\\
+\\
+Consideration of the above limitations, led to a reduced set of models to compare, including only the Schoolfield and Cubic equations. This has the additional benefit of comparing between two models that both have four parameters, which should enable any influence of mechanistic versus phenomenological model formation to be more easily detected. Again, this comparison indicated that the mechanistic model is a better fit to the data than the phenomenological one, as depicted in Figure~\ref{fig: Schoolf_pie}. 
+\\
+\\
+With regards to the primary aim of this project, I believe the results I have obtained support for the hypothesis that mechanistic models fit multiple thermal response curves of plants better than phenomenological ones. Whilst these models are not perfect (although many do have high R\begin{math}^2\end{math} values), and many response curves were best fitted by phenomenological versions, mechanistic models did perform better overall. Since the mechanistic models involved are models of biological rates it is possible to infer that the changes in fitness response observed with changing temperature are a direct consequence of changes occurring at the biochemical level. For example, using the Boltzmann factor it follows that where growth rate is higher, metabolic rate is also higher and that this is due to increased enzyme activity resulting from the physical laws concerning temperature and kinetic energy. As biological structures (proteins and RNA), enzymes are however susceptible to denaturation at higher temperatures where disruption of chemical bonds alters their conformation, limiting their ability to function. Incorporation of this process through the \begin{math}e^{\frac{E_h}{k}(\frac{1}{T_h} - \frac{1}{T})}\end{math} term in the Schoolfield model provides a further biological process which appears to create a model which better matches the data and provides a better understanding of the demonstrable effects that temperature has on living organisms \cite{martin2008suboptimal}.   
+\\
+\\
+Models can only ever approximate reality and whilst "All models are wrong, ... some are useful" \cite{box1987empirical}. I am therefore of the opinion that the incorporation of biochemical and physical processes into models of metabolism, as done in the Schoolfield and Boltzmann models, is of significant value in relation to enhancing our understanding of the living world in a way that is not facilitated through models which merely find statistical associations between observed patterns. These findings support this view and  suggest that when attempting to explain biological observations, a consideration of the underlying mechanisms involved should assist in the generation of realistic and informative models. 
+\\
+\\
+Having demonstrated the utility of mechanistic metabolic models there are a multitude of ways in which they could be applied. One idea is that the metabolic rate of an organism has far reaching consequences for ecological aspects such as population growth rates, interaction rates, and ecosystem productivity. If metabolism can be mechanistically linked to these, and other phenomena, there is the potential for incredibly broad predictive power when considering how changes in temperature are likely to influence individuals, populations and communities. For example, higher metabolic rates are associated with an increase in the flux of resources, causing population carrying capacities to be reduced \cite{brown2004toward, savage2004effects}. It should therefore be possible to predict changes in population sizes in response to temperature changes using a mechanistic model of metabolic rate. 
+\\
+\\
+Furthermore, as a consequence of the fact that the Schoolfield model inherently contains the parameter \begin{math}E_d\end{math}, which defines the decline in metabolic function with increasing temperature beyond T\begin{math}_{pk}\end{math} it is possible to mechanistically predict how individual metabolism may respond to climate change. Specifically, as the temperature dependence of fitness in ectotherms is well documented \cite{martin2008suboptimal}, mechanistic modeling of biological traits in conjunction with predictions of temperature changes due to global warming could be utilised to predict the future fitness of organisms in their current location and/or be incorporated into species distribution models to estimate the regions in which a species could survive in the future \cite{thomas2012global}. 
+\\
+\\
+Although the mechanistic models tested here appear to fit the data very well, it should be remembered that this study has focused solely on the thermal responses of plants. Before broadly applying such models, consideration of how well they fit the dataset of interest is necessary. Other studies have indicated that the Boltzmann factor can provide a good fit to data from a range of taxa, however there is ongoing debate as to whether a 'Universal Temperature Dependence' exists and over what range of temperatures such a mechanistic model can be considered valid \cite{gillooly2001effects, clarke2004there}. Another potential limitation of the study is that the best fitting model can be dramatically influenced by the range of temperatures for which thermal responses were recorded. As such, for cases where a limited range of temperature values exist, a Boltzmann model may appear to be best, whilst in reality, the full thermal response curve may be better approximated by a Schoolfield model. Similarly a lack of sampling within the range may disguise the true shape of the curve, making it difficult to distinguish between alternative models, such as Quadratic versus Schoolfield. It is therefore imperative that the data is well sampled over a biologically relevant range when attempting to asses the fit of different models to observed patterns. 
+   
+  
+\bibliographystyle{unsrt}
+\bibliography{Miniproject}
+\end{document}
