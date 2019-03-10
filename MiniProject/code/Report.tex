@@ -15,7 +15,15 @@
 \usepackage{diagbox}
 \graphicspath{ {../results/} }
 
+% Harvard-style referencing
+\usepackage[comma]{natbib}
+
+
+
 \begin{document}
+\bibliographystyle{agsm}
+\setcitestyle{authoryear,open={(},close={)}}
+
 % front page
 \input{Frontpage}
 
@@ -23,20 +31,25 @@
 \doublespacing
 \linenumbers 
 \section{Abstract}
-Image classification is a basic task in the field of computer vision, with the development of deep learning, the accuracy of computer vision recognition is constanly improving, showing the bright future in the practical applications, especially in the file of precision agriculture. Many studies are working to develop a crop detection technology that combines unmanned aerial vehicle (UAV) and spectroscopy. And a good image recognition model is the basis of this technology, but also the problem to be solved by this mini project. Here, I build several baseline models (KNN, SVM, Random Forest, XGBoost and Resnet18), to evaluate the performance of these algorithms and also improve my understanding of them. 
+Image classification is a basic task in the field of computer vision, with the development of deep learning, the accuracy of computer vision recognition is constanly improving, showing the bright future in the practical applications, especially in the file of precision agriculture. Many studies are working to develop a crop detection technology that combines unmanned aerial vehicle (UAV) and spectroscopy. And a good image recognition model is the basis of this technology, but also the problem to be solved by this mini project. Here, I built several baseline models (KNN, SVM, Random Forest, XGBoost and Resnet18), to evaluate the performance of these algorithms and also improve my understanding of them. And the results showed that neural network ResNets18 has the best performance, achieving 95\% accuracy, followed by the ensemble methods. Although the results are obvious, it still worth playing.
 \\
 \\
 \textbf{Keywords:} Image Clssification, Plant Seedlings, Machine learning, Model Comparison, ROC Curve
 
+\begin{flushleft} 
+\vspace{3cm}
+Word count: 2191.
+\newpage
+\end{flushleft}
 
 \section{Introduction}
-Precision agriculture is the direction of agriculture development, aim to improve the performance of crops and the environment quality by applying advanced application techniques and principles to manage spatial and temporal changes associated with all aspects of agriculture production.\cite{Aspects of Precision Agriculture} In the actual planting process, it is necessary to carry out individualized management for different crops as well as the problem of weeds for different varieties. In the effort of achieving that, remote sensing combines with effective recognition algorithms have been commonly considered as an effective technique.
+Precision agriculture is the direction of agriculture development, aim to improve the performance of crops and the environment quality by applying advanced application techniques and principles to manage spatial and temporal changes associated with all aspects of agriculture production.\citep{pierce1999aspects} In the actual planting process, it is necessary to carry out individualized management for different crops as well as the problem of weeds for different varieties. In the effort of achieving that, remote sensing combines with effective recognition algorithms have been commonly considered as an effective technique.
 \\
 \\
-Previous studies have made extensive research on the development of algorithms and models for field crop identification. Firstly, leave shape is one of the important basis for plant classification. Therefore, the identification of weeds and specific crops can be accomplished by analyzing the blade shape to derive certain edge features and shape features. For instance, by collecting visible light images of farmland, after binarization, extracted and analyzed characteristic parameters such as blade area, long axis, short axis, and centroid position, it can reach 73\% recognition rate for tomatoes and 68.8\% for weeds\cite{Robotic Weed Control System for Tomatoes}. Similarly, the leaf parameter k-NearestNeighbor (KNN) classifier for wheat and weeds can be achieved to 82\% and 79\%, and the Bayesian classifier can reach to 81\% and 75\%\cite{Robotic Weed Control System for Tomatoes}. Secondly, due to the different tissue structure of the leaves, it provides the possibility to distinguish different crops by using spectral features. By collecting and analyzing the 435-1000nm spectral data of weeds and crops, KNN classifer can achieve 97\% accuracy for weeds and Multi-layer neural network can go upto 80.1\% for crops\cite{Robotic Weed Control System for Tomatoes}.
+Previous studies have made extensive research on the development of algorithms and models for field crop identification. Firstly, leave shape is one of the important basis for plant classification. Therefore, the identification of weeds and specific crops can be accomplished by analyzing the blade shape to derive certain edge features and shape features. For instance, by collecting visible light images of farmland, after binarization, extracted and analyzed characteristic parameters such as blade area, long axis, short axis, and centroid position, it can reach 73\% recognition rate for tomatoes and 68.8\% for weeds\citep{lee1999robotic}. Similarly, the leaf parameter k-NearestNeighbor (KNN) classifier for wheat and weeds can be achieved to 82\% and 79\%, and the Bayesian classifier can reach to 81\% and 75\%\citep{perez2000colour}. Secondly, due to the different tissue structure of the leaves, it provides the possibility to distinguish different crops by using spectral features. By collecting and analyzing the 435-1000nm spectral data of weeds and crops, KNN classifer can achieve 97\% accuracy for weeds and Multi-layer neural network can go upto 80.1\% for crops\citep{feyaerts2001multi}.
 \\
 \\
-In the last decade, with the accumulation of data and the enhancement of computing power, deep learning has ushered in a big outbreak. In 2012, in order to prove the potential of deep learning, the Hinton research group participated in the ImageNet image recognition competition for the first time, and won the championship by constructing the Convolutional neural network(CNN) AlexNet, and crushed the classification performance of the second place (Support Vector Machines, SVM). It is also because of this competition that CNN has attracted the attention of many other researchers. In the subsequent games, other well-known neural networks appeared, such as VGGnet, Inception network and ResNets. 
+In the last decade, with the accumulation of data and the enhancement of computing power, deep learning has ushered in a big outbreak. In 2012, in order to prove the potential of deep learning, the Hinton research group participated in the ImageNet image recognition competition for the first time, and won the championship by constructing the Convolutional neural network(CNN) AlexNet\citep{krizhevsky2012imagenet}, and crushed the classification performance of the second place (Support Vector Machines, SVM). It is also because of this competition that CNN has attracted the attention of many other researchers. In the subsequent games, other well-known neural networks appeared, such as VGGnet, Inception network and ResNets. 
 \\
 \\
 Here, in order to better understand the performance of traditional machine learning models and neural networks in image classification, and to better apply the effective model in the precision agriculture crop detection, I build and compare the performance of KNN, SVM, ensemble method like Random Forest and XGBoost, and CNN ResNets18, train from scratch and transfer learning, based on the image dataset download from the kaggle playground, the plant seedlings classification dataset. 
@@ -77,7 +90,7 @@ Total&4750 images\\
 \end{center}
 
 \subsection{Data manipulation}
-Prior to the use of the image data for model fitting, manipulation was required to extract the features that was relevant to my analysis. Most of the data feature processing is based on python module openCV\cite{Robotic Weed Control System for Tomatoes} and sklearn\cite{Robotic Weed Control System for Tomatoes}.
+Prior to the use of the image data for model fitting, manipulation was required to extract the features that was relevant to my analysis. Most of the data feature processing is based on python module openCV\citep{howse2013opencv} and sklearn\citep{pedregosa2011scikit}.
 \begin{itemize}
 \item[1)] Due to the different image sizes, we resized to a fixed size of 128 X 128.
 \item[2)] Convert images to different color spaces, RGB(Red Green Blue), HSV(Hue Saturation Value), a color model based on the physiological characteristics of a person's observation of color (the human visual system is more sensitive to brightness than the color value), and HLS(Hue Saturation Lightness). 
@@ -97,22 +110,27 @@ Normally, for binary classification problem, the predition results will be as fo
 \diagbox{Label}{Predition} & +1 & -1 \\
 \hline
 +1&True Positive(TP)&False Negetive(FN)\\
--1&True Positive(FP)&True Negetive(TN)\\
+-1&False Positive(FP)&True Negetive(TN)\\
 \hline
 \end{tabular}
 \caption{Analysis of the results of the binary classification problem}
 \end{table}
 
-The indicator for classification model evaluation usually can be accuracy, precision, recall, f1-score, ROC curve, AUC, etc. Their calculation formula is as follows:
+The metrics for classification model evaluation usually can be accuracy, precision, recall, f1-score, ROC curve, AUC, etc. Their calculation formula is as follows:
 \begin{itemize}
 \item[1)] Accuracy = (TP+TN)/All Samples, accuracy is the most common and basic evaluation metric. However, in the case of unbalanced positive and negative cases, especially when we are more interested in the minority class, it will have the ``accuracy paradox".
-\item[2)] Precision = TP/(TP+FP)
+\item[2)] Precision = TP/(TP+FP) 
 \item[3)] Recall = TP/(TP+FN)
-\item[4)] F1-score = 2 * Precision * Recall/(Precision + Recall), F1-score is a metric that takes into account precision and recall. In the case of multi-class classification, macro-average is better than micro-average, because macro-average treats each class equally, so its value is mainly affected by rare class.
-\item[5)] True Positive Rate(TPR) = TP/(TP+FN) = TP/actual positives, False Postive Rate(FPR)　=　FP/(FP+TN) = FP/actual negatives, the ROC curve is composed of points (TPR, FPR) that set different thresholds, and AUC is the area of the ROC. The bigger the AUC, the better.
+\item[4)] F1-score = 2 * Precision * Recall/(Precision + Recall), F1-score is a metric that takes into account precision and recall. In the case of multi-class classification, macro-average is better than micro-average, because macro-average treats each class equally, so its value is mainly affected by rare class, and micro-average is just same as accuracy in one label classification problem.
+\item[5)] True Positive Rate(TPR) = TP/(TP+FN) = TP/actual positives, False Postive Rate(FPR)　=　FP/(FP+TN) = FP/actual negatives, the ROC curve is composed of points (FPR, TPR) that set different thresholds, and AUC is the area of the ROC. The bigger the AUC, the better.
 \end{itemize}
 
 In this project, we comprehensively use these two types of classification model metrics to examine the image classification performance of different models.
+
+\subsection{Computing languages}
+python: use sklearn, opencv and matplotlib for machine learning, computer vision task, data analyzing and plotting.
+R: for ggplot.
+bash: for building the workflow.
 
 
 \subsection{Model fitting}
@@ -229,6 +247,6 @@ Since we are dealing with unstructured data, it is hard to judge and extract the
 We can also see that most of the fitting results have been overfitting due to some consensus reasons, like too much noise, insufficent training data, overly complex model etc. The image in the dataset is not uniform, the size is inconsistent and have large variance, sometimes there are more than one plant in a picture. So, it can be better if there is a better way to normalized the data.　Besides, ensemble method like Random Forest and XGBoost can theoretically reduce the complexity of the model to avoid overfitting, but it goes up to 99\% accuracy for the training set, probably need more effort on hyperparameter turning.
 
 
-\bibliographystyle{unsrt}
-\bibliography{Miniproject}
+
+\bibliography{Report}
 \end{document}
