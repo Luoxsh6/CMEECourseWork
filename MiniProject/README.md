@@ -5,7 +5,7 @@
 
 ```Bash
     # run this code for testing
-    source test.sh
+    source run_MiniProject.sh
 ```
 
 ## Prerequisites
