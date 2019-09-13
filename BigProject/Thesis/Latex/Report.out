@@ -1,0 +1,21 @@
+\BOOKMARK [1][-]{section.1}{INTRODUCTION}{}% 1
+\BOOKMARK [1][-]{section.2}{MATERIALS AND METHODS}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Workflow}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Data Collection}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Vegetation Indices Calculations}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Machine Learning}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Model Fitting}{subsection.2.4}% 7
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Feature Engineering}{subsection.2.4}% 8
+\BOOKMARK [2][-]{subsection.2.5}{Computer Vision}{section.2}% 9
+\BOOKMARK [1][-]{section.3}{RESULTS}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{Data}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Vegetation Indices}{section.3}% 12
+\BOOKMARK [2][-]{subsection.3.3}{Dimensionality Reduction}{section.3}% 13
+\BOOKMARK [2][-]{subsection.3.4}{Feature Selection}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.5}{Models}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.6}{Shelf Life Prediction}{section.3}% 16
+\BOOKMARK [1][-]{section.4}{DISCUSSION}{}% 17
+\BOOKMARK [1][-]{section.5}{Limitations and Future Research}{}% 18
+\BOOKMARK [1][-]{section.6}{ACKNOWLEDGEMENTS}{}% 19
+\BOOKMARK [1][-]{section.7}{CODE \046 DATA ACCESSIBILITY}{}% 20
+\BOOKMARK [1][-]{section.8}{Supplementary Information}{}% 21

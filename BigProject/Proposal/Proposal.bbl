@@ -1,0 +1,38 @@
+\begin{thebibliography}{1}
+
+\bibitem{calderon2013high}
+R~Calder{\'o}n, Juan~Antonio Navas-Cort{\'e}s, C~Lucena, and Pablo~J
+  Zarco-Tejada.
+\newblock High-resolution airborne hyperspectral and thermal imagery for early
+  detection of verticillium wilt of olive using fluorescence, temperature and
+  narrow-band spectral indices.
+\newblock {\em Remote Sensing of Environment}, 139:231--245, 2013.
+
+\bibitem{zhao2016hyperspectral}
+Yan-Ru Zhao, Xiaoli Li, Ke-Qiang Yu, Fan Cheng, and Yong He.
+\newblock Hyperspectral imaging for determining pigment contents in cucumber
+  leaves in response to angular leaf spot disease.
+\newblock {\em Scientific reports}, 6:27790, 2016.
+
+\bibitem{torres2013imagery}
+J~Torres-S{\'a}nchez, JM~Pe{\~n}a-Barrag{\'a}n, D~G{\'o}mez-Cand{\'o}n,
+  AI~De~Castro, and F~L{\'o}pez-Granados.
+\newblock Imagery from unmanned aerial vehicles for early site specific weed
+  management.
+\newblock In {\em Precision agriculture’13}, pages 193--199. Springer, 2013.
+
+\bibitem{laliberte2009texture}
+Andrea~S Laliberte and Albert Rango.
+\newblock Texture and scale in object-based analysis of subdecimeter resolution
+  unmanned aerial vehicle (uav) imagery.
+\newblock {\em IEEE Transactions on Geoscience and Remote Sensing},
+  47(3):761--770, 2009.
+
+\bibitem{vega2015multi}
+Francisco~Ag{\"u}era Vega, Fernando~Carvajal Ram{\'\i}rez, M{\'o}nica~P{\'e}rez
+  Saiz, and Francisco~Orgaz Ros{\'u}a.
+\newblock Multi-temporal imaging using an unmanned aerial vehicle for
+  monitoring a sunflower crop.
+\newblock {\em Biosystems Engineering}, 132:19--27, 2015.
+
+\end{thebibliography}

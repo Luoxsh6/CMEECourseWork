@@ -1,0 +1,46 @@
+\documentclass[11pt]{article}
+
+
+
+\usepackage[left=4.1cm,right=4.1cm,top=2.97cm,bottom=5cm]%
+{geometry}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{amsmath}
+
+\usepackage{setspace}
+\usepackage{diagbox}
+
+
+
+% Harvard-style referencing
+\usepackage[comma]{natbib}
+
+
+\setcounter{page}{2}
+\begin{document}
+\bibliographystyle{agsm}
+\setcitestyle{authoryear,open={(},close={)}}
+
+
+\newpage
+\begin{document}\large
+\font\myfont=cmr12 at 14pt 
+\title{\myfont Earth Observation and Data Science to better Understand and Model Ecosystems under Global Change}
+\date{}        
+\author{Dr. Matthias Forkel}
+\maketitle
+\noindent
+Dr. Matthias Forkel is an environmental scientist who uses satellite observation to study how climate affects ecosystems. He develops and applies remote sensing methods, global ecosystem models, and machine learning approaches. In his speech, he showed us three examples in his research on how approaches from data science help to make use of multiple Earth observation for ecosystem process understanding and modelling.
+\\
+\\
+The first example is the research foucus on mapping increasing cover of vegetation changes across global land and indentifiying the climatic and socioeconomic drivers behind such changes. The changing trends in ecosystem productivity can be quantified using satellite Observation of Normalized Differece vegetation Index (NDVI), while they are differs depending on analyzed satellite dataset, corresponding spatio temporal resolution and applied statistical method. By comparing the performance of wide range of trend estimation methods for long-term NDVI time series, they demonstrated that seasonal trend methods need to be improved against inter-annual variability.
+\\
+\\
+The second example is using satellite observation for modelling to predict wildfires. The developed a new flexible machine learning-based and process-oriented approach (Satelllite Observation to predict Fire Activity, SOFIA) which can use several predictor variables and functional relationships to estiamte burned area. By using this approach, they found out that a high plant productivity in a wet season can cause large burn area in the following dry season and this effect is strongly underestimated by most global vegetation models.
+\\
+\\
+The third example is about phenology. He developed a method to identify phenological metrics like the start and end of the growing season from satellite and ground-based vegetation observation. Futhermore, he improved the representation of phenology in a global vegetation model which helped to quantified the relative contribution of light, temperature, and water availability on changes in phenology.
+\end{document}
+
+
